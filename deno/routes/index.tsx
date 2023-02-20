@@ -24,12 +24,15 @@ export default function Home({data}: PageProps<OrderData>) {
     return (
         <>
             <Head>
+                <base href="/" />
                 <title>Get Your Dinosaur!</title>
+                <link rel="stylesheet" href="dinorder.css" />
             </Head>
             <main>
-                <h1>Order your dinosaur today!</h1>
+                <h1>Dinorder</h1>
+                <h2>Order your dinosaur today!</h2>
                 <p>
-                    <a href="/dinos/trex">Get a T-Rex!</a>
+                    <a href="/dinos/ankylosaurus">Get an Ankylosaurus!</a>
                 </p>
                 <p>
                     <a href="/dinos/brachiosaurus">Get a Brachiosaurus!</a>

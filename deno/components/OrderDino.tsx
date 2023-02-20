@@ -27,6 +27,8 @@ export async function sendOrder(req, ctx) {
 }
 
 export function OrderDino(props: OrderDinoProps) {
+    // TODO read A/B testing cookie to decide which version to display.
+
     return (
         <>
             <h2>Order Your Dinosaur!</h2>
@@ -40,7 +42,7 @@ export function OrderDino(props: OrderDinoProps) {
                     <p>
                         <label for="dino">Dino</label>
                         <select name="dino" id="dino">
-                            <option selected={props.dino === "T-Rex"}>T-Rex</option>
+                            <option selected={props.dino === "Ankylosaurus"}>Ankylosaurus</option>
                             <option selected={props.dino === "Brachiosaurus"}>Brachiosaurus</option>
                         </select>
                         {props.error ? <span>{props.error}</span> : undefined}

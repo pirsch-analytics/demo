@@ -24,11 +24,11 @@ export default function Home({data}: PageProps<OrderData>) {
     return (
         <>
             <Head>
-                <title>T-Rex</title>
+                <title>Ankylosaurus</title>
             </Head>
             <main>
-                <p>Get a T-Rex!</p>
-                <OrderDino dino="T-Rex" success={success} error={error} />
+                <p>Get a Ankylosaurus!</p>
+                <OrderDino dino="Ankylosaurus" success={success} error={error} />
             </main>
         </>
     );

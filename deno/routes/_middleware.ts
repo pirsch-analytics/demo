@@ -10,6 +10,8 @@ export async function handler(
     ctx: MiddlewareHandlerContext<State>,
 ) {
     const resp = await ctx.next();
+
+    // TODO check and set A/B testing cookie and send event once!
     
     if (ctx.state.track) {
         pageView(req, ctx);

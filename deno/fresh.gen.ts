@@ -4,15 +4,15 @@
 
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_middleware.ts";
-import * as $1 from "./routes/dinos/brachiosaurus.tsx";
-import * as $2 from "./routes/dinos/trex.tsx";
+import * as $1 from "./routes/dinos/ankylosaurus.tsx";
+import * as $2 from "./routes/dinos/brachiosaurus.tsx";
 import * as $3 from "./routes/index.tsx";
 
 const manifest = {
   routes: {
     "./routes/_middleware.ts": $0,
-    "./routes/dinos/brachiosaurus.tsx": $1,
-    "./routes/dinos/trex.tsx": $2,
+    "./routes/dinos/ankylosaurus.tsx": $1,
+    "./routes/dinos/brachiosaurus.tsx": $2,
     "./routes/index.tsx": $3,
   },
   islands: {},
