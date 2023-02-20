@@ -28,10 +28,11 @@ export async function sendOrder(req, ctx) {
 
 export function OrderDino(props: OrderDinoProps) {
     // TODO read A/B testing cookie to decide which version to display.
+    const variant = "C";
 
     return (
         <>
-            <h2>Order Your Dinosaur!</h2>
+            <h2>{variant === "C" ? "Order Your Dinosaur!" : "Get Your Dino!"}</h2>
             {props.success ? (
                 <>
                     <p>Thank you for your order! We will deliver your dinosaur as soon as possible.</p>

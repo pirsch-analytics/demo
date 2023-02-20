@@ -24,9 +24,12 @@ export default function Home({data}: PageProps<OrderData>) {
     return (
         <>
             <Head>
+                <base href="/" />
                 <title>Brachiosaurus</title>
+                <link rel="stylesheet" href="dinorder.css" />
             </Head>
             <main>
+                <a href="/">Back</a>
                 <p>Get a Brachiosaurus!</p>
                 <OrderDino dino={"Brachiosaurus"} success={success} error={error} />
             </main>

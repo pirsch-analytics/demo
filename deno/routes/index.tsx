@@ -1,5 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers } from "$fresh/server.ts";
+import { DinoSelection } from "../components/DinoSelection.tsx";
 import { OrderData, OrderDino, sendOrder } from "../components/OrderDino.tsx";
 
 export const handler: Handlers<any> = {
@@ -31,12 +32,7 @@ export default function Home({data}: PageProps<OrderData>) {
             <main>
                 <h1>Dinorder</h1>
                 <h2>Order your dinosaur today!</h2>
-                <p>
-                    <a href="/dinos/ankylosaurus">Get an Ankylosaurus!</a>
-                </p>
-                <p>
-                    <a href="/dinos/brachiosaurus">Get a Brachiosaurus!</a>
-                </p>
+                <DinoSelection />
                 <OrderDino success={success} error={error} />
             </main>
         </>

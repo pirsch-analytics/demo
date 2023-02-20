@@ -1,4 +1,38 @@
+* {
+    font-family: sans-serif;
+}
+
 main {
     max-width: 800px;
     margin: 0 auto;
+}
+
+a {
+    color: #1fcc00;
+    text-decoration: none;
+}
+
+.dinos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.dinos div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dinos img {
+    max-width: 256px;
+    margin-bottom: 20px;
+}
+
+.dinos a {
+    display: block;
+}
+
+label {
+    display: block;
 }
