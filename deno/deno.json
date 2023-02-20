@@ -1,0 +1,16 @@
+{
+  "tasks": {
+    "start": "deno run -A --watch=static/,routes/ dev.ts"
+  },
+  "importMap": "./import_map.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
+  "pirsch": {
+    "hostname": "localhost.com",
+    "accessToken": "pa_82xTB69lqUq7uTA5S4ELDMGXdTvcoEqJUwzjVPNsxuQG5",
+    "protocol": "http",
+    "ip": "87.171.210.182"
+  }
+}
