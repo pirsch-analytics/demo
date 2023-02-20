@@ -1,6 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers } from "$fresh/server.ts";
-import { OrderData, OrderDino, sendOrder } from "../components/OrderDino.tsx";
+import { OrderData, OrderDino, sendOrder } from "../../components/OrderDino.tsx";
 
 export const handler: Handlers<any> = {
     async GET(req, ctx) {
@@ -24,17 +24,11 @@ export default function Home({data}: PageProps<OrderData>) {
     return (
         <>
             <Head>
-                <title>Get Your Dinosaur!</title>
+                <title>T-Rex</title>
             </Head>
             <main>
-                <h1>Order your dinosaur today!</h1>
-                <p>
-                    <a href="/dinos/trex">Get a T-Rex!</a>
-                </p>
-                <p>
-                    <a href="/dinos/brachiosaurus">Get a Brachiosaurus!</a>
-                </p>
-                <OrderDino success={success} error={error} />
+                <p>Get a T-Rex!</p>
+                <OrderDino dino="T-Rex" success={success} error={error} />
             </main>
         </>
     );
