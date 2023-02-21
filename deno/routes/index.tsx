@@ -33,11 +33,10 @@ export default function Home({data}: PageProps<HomeData>) {
 
     return (
         <>
-            <Header title="Get Your Dinosaur!" />
+            <Header title="Ordino - The best dinosour shop" />
             <Menu />
             <main>
-                <h1>Dinorder</h1>
-                <h2>Order your dinosaur today!</h2>
+                <h1>The best dinosaurs since 245,000,000 B.C.</h1>
                 <DinoSelection variant={selectionVariant} />
                 <OrderDino variant={orderVariant} success={success} error={error} />
             </main>

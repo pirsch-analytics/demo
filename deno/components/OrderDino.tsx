@@ -30,7 +30,7 @@ export async function sendOrder(req, ctx) {
 export function OrderDino(props: OrderDinoProps) {
     return (
         <>
-            <h2>{props.variant === "C" ? "Order Your Dinosaur!" : "Get Your Dino!"}</h2>
+            <h2>{props.variant === "C" ? "Order your Dinosaur today!" : "Get your Dinosaur!"}</h2>
             {props.success ? (
                 <>
                     <p>Thank you for your order! We will deliver your dinosaur as soon as possible.</p>
@@ -38,22 +38,22 @@ export function OrderDino(props: OrderDinoProps) {
             ) : (
                 <>
                     <form method="post">
-                    <p>
-                        <label for="dino">Dino</label>
-                        <select name="dino" id="dino">
-                            <option selected={props.dino === "Ankylosaurus"}>Ankylosaurus</option>
-                            <option selected={props.dino === "Brachiosaurus"}>Brachiosaurus</option>
-                        </select>
-                    </p>
-                    <p>
-                        <label for="name">Your Name</label>
-                        <input type="text" name="name" id="name" />
-                        {props.error ? <span class="error">{props.error}</span> : undefined}
-                    </p>
-                    <p>
-                        <input type="submit" value="Order Now!" />
-                    </p>
-                </form>
+                        <div class="row">
+                            <fieldset>
+                                <label for="dino">Type of dinosaur</label>
+                                <select name="dino" id="dino">
+                                    <option selected={props.dino === "Ankylosaurus"}>Ankylosaurus</option>
+                                    <option selected={props.dino === "Brachiosaurus"}>Brachiosaurus</option>
+                                </select>
+                            </fieldset>
+                            <fieldset>
+                                <label for="name">Your name</label>
+                                <input type="text" name="name" id="name" />
+                                {props.error ? <span class="error">{props.error}</span> : undefined}
+                            </fieldset>
+                        </div>
+                        <input type="submit" value="Order now!" />
+                    </form>
                 </>
             )}
         </>

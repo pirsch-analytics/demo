@@ -9,7 +9,7 @@ export function Header(props: HeaderProps) {
         <Head>
             <base href="/" />
             <title>{props.title}</title>
-            <link rel="stylesheet" href="dinorder.css" />
+            <link rel="stylesheet" href="ordino.css" />
         </Head>
     );
 }

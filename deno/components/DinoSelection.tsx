@@ -8,26 +8,34 @@ export function DinoSelection(props: DinoSelectionProps) {
             {props.variant === "A" ? (
                 <>
                     <div class="dinos">
-                        <div>
-                            <img src="triceratops.png" alt="Ankylosaurus" />
-                            <a href="/dinos/ankylosaurus">Get an Ankylosaurus!</a>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="ankylosaurus.png" alt="Ankylosaurus" />
+                                <a href="/dinos/ankylosaurus">Ankylosaurus</a>
+                            </div>
                         </div>
-                        <div>
-                            <img src="brachiosaurus.png" alt="Ankylosaurus" />
-                            <a href="/dinos/brachiosaurus">Get a Brachiosaurus!</a>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="brachiosaurus.png" alt="Ankylosaurus" />
+                                <a href="/dinos/brachiosaurus">Brachiosaurus</a>
+                            </div>
                         </div>
                     </div>
                 </>
             ) : (
                 <>
                     <div class="dinos">
-                        <div>
-                            <img src="brachiosaurus.png" alt="Ankylosaurus" />
-                            <a href="/dinos/brachiosaurus">Get a Brachiosaurus!</a>
+                        <div class="card">
+                            <a href="/dinos/brachiosaurus" class="card-content">
+                                <img src="brachiosaurus.png" alt="Ankylosaurus" />
+                                <span>Brachiosaurus</span>
+                            </a>
                         </div>
-                        <div>
-                            <img src="triceratops.png" alt="Ankylosaurus" />
-                            <a href="/dinos/ankylosaurus">Get an Ankylosaurus!</a>
+                        <div class="card">
+                            <a href="/dinos/ankylosaurus" class="card-content">
+                                <img src="ankylosaurus.png" alt="Ankylosaurus" />
+                                <span>Ankylosaurus</span>
+                            </a>
                         </div>
                     </div>
                 </>

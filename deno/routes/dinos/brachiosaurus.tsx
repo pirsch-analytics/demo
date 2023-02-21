@@ -33,9 +33,8 @@ export default function Brachiosaurus({data}: PageProps<BrachiosaurusData>) {
             <Header title="Brachiosaurus" />
             <Menu />
             <main>
-                <a href="/">Back</a>
                 <h1>Get a Brachiosaurus!</h1>
-                <img src="brachiosaurus.png" alt="Ankylosaurus" />
+                <img src="brachiosaurus.png" alt="Ankylosaurus" style="width: 100%;" />
                 <OrderDino variant={orderVariant} dino={"Brachiosaurus"} success={success} error={error} />
             </main>
             <Footer />

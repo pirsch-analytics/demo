@@ -33,9 +33,8 @@ export default function Ankylosaurus({data}: PageProps<AnkylosaurusData>) {
             <Header title="Ankylosaurus" />
             <Menu />
             <main>
-                <a href="/">Back</a>
-                <h1>Get a Ankylosaurus!</h1>
-                <img src="triceratops.png" alt="Ankylosaurus" />
+                <h1>Get an Ankylosaurus!</h1>
+                <img src="ankylosaurus.png" alt="Ankylosaurus" style="width: 100%;" />
                 <OrderDino variant={orderVariant} dino="Ankylosaurus" success={success} error={error} />
             </main>
             <Footer />
