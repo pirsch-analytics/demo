@@ -9,16 +9,16 @@ export function DinoSelection(props: DinoSelectionProps) {
                 <>
                     <div class="dinos">
                         <div class="card">
-                            <div class="card-content">
-                                <img src="ankylosaurus.png" alt="Ankylosaurus" />
-                                <a href="/dinos/ankylosaurus">Ankylosaurus</a>
-                            </div>
+                            <a href="/dinos/brachiosaurus" class="card-content">
+                                <img src="brachiosaurus.png" alt="Ankylosaurus" />
+                                <span>Brachiosaurus</span>
+                            </a>
                         </div>
                         <div class="card">
-                            <div class="card-content">
-                                <img src="brachiosaurus.png" alt="Ankylosaurus" />
-                                <a href="/dinos/brachiosaurus">Brachiosaurus</a>
-                            </div>
+                            <a href="/dinos/ankylosaurus" class="card-content">
+                                <img src="ankylosaurus.png" alt="Ankylosaurus" />
+                                <span>Ankylosaurus</span>
+                            </a>
                         </div>
                     </div>
                 </>
