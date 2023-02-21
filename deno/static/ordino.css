@@ -44,11 +44,16 @@ footer {
     width: 1200px;
     max-width: calc(100% - 32px);
     margin: 0 auto;
-    padding: 2px;
+    padding: 24px 0;
     display: grid;
     grid-template-columns: 1fr auto auto auto;
     align-items: center;
     gap: 24px;
+}
+
+footer span {
+    font-size: 16px;
+    font-weight: 500;
 }
 
 h1 {
@@ -65,8 +70,12 @@ h2 {
 }
 
 p {
-    font-size: 16px;
+    max-width: 786px;
+    margin: 0 auto 48px;
+    font-size: 24px;
     font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
 }
 
 a {
