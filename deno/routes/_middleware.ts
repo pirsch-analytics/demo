@@ -11,8 +11,15 @@ export async function handler(
     ctx: MiddlewareHandlerContext<State>
 ) {
     const abTest = initABTesting(req, ctx);
-    ctx.state.selectionVariant = getVariant(req, "selection") ?? abTest.variants["selection"];
-    ctx.state.orderVariant = getVariant(req, "orderForm") ?? abTest.variants["orderForm"];
+
+    if (abTest) {
+        ctx.state.selectionVariant = abTest.variants["selection"];
+        ctx.state.orderVariant = abTest.variants["orderForm"];
+    } else {
+        ctx.state.selectionVariant = getVariant(req, "selection");
+        ctx.state.orderVariant = getVariant(req, "orderForm");
+    }
+
     const resp = await ctx.next();
 
     if (abTest) {

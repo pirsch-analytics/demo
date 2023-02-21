@@ -17,14 +17,14 @@ export async function sendOrder(req, ctx) {
     const dino = formData.get("dino");
     const name = formData.get("name").trim();
 
-    if (name === "") {
-        return "The name must not be empty!";
+    if (!name) {
+        return Promise.reject("The name must not be empty!");
     } else {
         console.log("New order received", name, dino);
         event(req, ctx, "New Order", [{dino}]);
     }
 
-    return null;
+    return Promise.resolve();
 }
 
 export function OrderDino(props: OrderDinoProps) {
@@ -44,11 +44,11 @@ export function OrderDino(props: OrderDinoProps) {
                             <option selected={props.dino === "Ankylosaurus"}>Ankylosaurus</option>
                             <option selected={props.dino === "Brachiosaurus"}>Brachiosaurus</option>
                         </select>
-                        {props.error ? <span>{props.error}</span> : undefined}
                     </p>
                     <p>
                         <label for="name">Your Name</label>
                         <input type="text" name="name" id="name" />
+                        {props.error ? <span class="error">{props.error}</span> : undefined}
                     </p>
                     <p>
                         <input type="submit" value="Order Now!" />

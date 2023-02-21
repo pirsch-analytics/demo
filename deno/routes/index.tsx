@@ -1,6 +1,8 @@
-import { Head } from "$fresh/runtime.ts";
 import { Handlers } from "$fresh/server.ts";
 import { DinoSelection } from "../components/DinoSelection.tsx";
+import { Footer } from "../components/Footer.tsx";
+import { Header } from "../components/Header.tsx";
+import { Menu } from "../components/Menu.tsx";
 import { OrderData, OrderDino, sendOrder } from "../components/OrderDino.tsx";
 
 export const handler: Handlers<any> = {
@@ -12,13 +14,12 @@ export const handler: Handlers<any> = {
         });
     },
     async POST(req, ctx) {
-        const error = sendOrder(req, ctx);
-        
-        if (error) {
+        try {
+            await sendOrder(req, ctx);
+            return ctx.render({success: true});
+        } catch (error) {
             return ctx.render({error});
         }
-
-        return ctx.render({success: true});
     }
 };
 
@@ -32,17 +33,15 @@ export default function Home({data}: PageProps<HomeData>) {
 
     return (
         <>
-            <Head>
-                <base href="/" />
-                <title>Get Your Dinosaur!</title>
-                <link rel="stylesheet" href="dinorder.css" />
-            </Head>
+            <Header title="Get Your Dinosaur!" />
+            <Menu />
             <main>
                 <h1>Dinorder</h1>
                 <h2>Order your dinosaur today!</h2>
                 <DinoSelection variant={selectionVariant} />
                 <OrderDino variant={orderVariant} success={success} error={error} />
             </main>
+            <Footer />
         </>
     );
 }

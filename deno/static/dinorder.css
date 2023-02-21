@@ -1,5 +1,6 @@
 * {
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 main {
@@ -7,9 +8,33 @@ main {
     margin: 0 auto;
 }
 
+nav {
+    max-width: 800px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr auto auto auto auto;
+    align-items: center;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+footer {
+    max-width: 800px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    margin: 0 auto;
+    gap: 20px;
+}
+
 a {
     color: #1fcc00;
     text-decoration: none;
+}
+
+label {
+    display: block;
 }
 
 .dinos {
@@ -33,6 +58,7 @@ a {
     display: block;
 }
 
-label {
+.error {
+    color: #f00;
     display: block;
 }

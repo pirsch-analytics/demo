@@ -1,5 +1,7 @@
-import { Head } from "$fresh/runtime.ts";
 import { Handlers } from "$fresh/server.ts";
+import { Footer } from "../../components/Footer.tsx";
+import { Header } from "../../components/Header.tsx";
+import { Menu } from "../../components/Menu.tsx";
 import { OrderData, OrderDino, sendOrder } from "../../components/OrderDino.tsx";
 
 export const handler: Handlers<any> = {
@@ -10,13 +12,12 @@ export const handler: Handlers<any> = {
         });
     },
     async POST(req, ctx) {
-        const error = sendOrder(req, ctx);
-        
-        if (error) {
+        try {
+            await sendOrder(req, ctx);
+            return ctx.render({success: true});
+        } catch (error) {
             return ctx.render({error});
         }
-
-        return ctx.render({success: true});
     }
 };
 
@@ -29,16 +30,15 @@ export default function Ankylosaurus({data}: PageProps<AnkylosaurusData>) {
 
     return (
         <>
-            <Head>
-                <base href="/" />
-                <title>Ankylosaurus</title>
-                <link rel="stylesheet" href="dinorder.css" />
-            </Head>
+            <Header title="Ankylosaurus" />
+            <Menu />
             <main>
                 <a href="/">Back</a>
-                <p>Get a Ankylosaurus!</p>
+                <h1>Get a Ankylosaurus!</h1>
+                <img src="triceratops.png" alt="Ankylosaurus" />
                 <OrderDino variant={orderVariant} dino="Ankylosaurus" success={success} error={error} />
             </main>
+            <Footer />
         </>
     );
 }
