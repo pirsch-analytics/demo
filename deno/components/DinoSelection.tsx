@@ -1,10 +1,11 @@
-export function DinoSelection() {
-    // TODO read A/B testing cookie to decide which version to display.
-    const variant = "A";
+interface DinoSelectionProps {
+    variant?: string
+}
 
+export function DinoSelection(props: DinoSelectionProps) {
     return (
         <>
-            {variant === "A" ? (
+            {props.variant === "A" ? (
                 <>
                     <div class="dinos">
                         <div>

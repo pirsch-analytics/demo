@@ -6,7 +6,10 @@ import { OrderData, OrderDino, sendOrder } from "../components/OrderDino.tsx";
 export const handler: Handlers<any> = {
     async GET(req, ctx) {
         ctx.state.track = true;
-        return await ctx.render({});
+        return await ctx.render({
+            selectionVariant: ctx.state.selectionVariant,
+            orderVariant: ctx.state.orderVariant
+        });
     },
     async POST(req, ctx) {
         const error = sendOrder(req, ctx);
@@ -19,8 +22,13 @@ export const handler: Handlers<any> = {
     }
 };
 
-export default function Home({data}: PageProps<OrderData>) {
-    const {success, error} = data;
+interface HomeData extends OrderData {
+    selectionVariant?: string
+    orderVariant?: string
+}
+
+export default function Home({data}: PageProps<HomeData>) {
+    const {selectionVariant, orderVariant, success, error} = data;
 
     return (
         <>
@@ -32,8 +40,8 @@ export default function Home({data}: PageProps<OrderData>) {
             <main>
                 <h1>Dinorder</h1>
                 <h2>Order your dinosaur today!</h2>
-                <DinoSelection />
-                <OrderDino success={success} error={error} />
+                <DinoSelection variant={selectionVariant} />
+                <OrderDino variant={orderVariant} success={success} error={error} />
             </main>
         </>
     );

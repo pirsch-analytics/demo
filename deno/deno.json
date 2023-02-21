@@ -8,6 +8,7 @@
     "jsxImportSource": "preact"
   },
   "pirsch": {
+    "_TODO": "move to .env: https://deno.land/std@0.177.0/dotenv/mod.ts",
     "hostname": "localhost.com",
     "accessToken": "pa_82xTB69lqUq7uTA5S4ELDMGXdTvcoEqJUwzjVPNsxuQG5",
     "protocol": "http"

@@ -5,7 +5,9 @@ import { OrderData, OrderDino, sendOrder } from "../../components/OrderDino.tsx"
 export const handler: Handlers<any> = {
     async GET(req, ctx) {
         ctx.state.track = true;
-        return await ctx.render({});
+        return await ctx.render({
+            orderVariant: ctx.state.orderVariant
+        });
     },
     async POST(req, ctx) {
         const error = sendOrder(req, ctx);
@@ -18,8 +20,12 @@ export const handler: Handlers<any> = {
     }
 };
 
-export default function Home({data}: PageProps<OrderData>) {
-    const {success, error} = data;
+interface BrachiosaurusData extends OrderData {
+    orderVariant?: string
+}
+
+export default function Brachiosaurus({data}: PageProps<BrachiosaurusData>) {
+    const {orderVariant, success, error} = data;
 
     return (
         <>
@@ -31,7 +37,7 @@ export default function Home({data}: PageProps<OrderData>) {
             <main>
                 <a href="/">Back</a>
                 <p>Get a Brachiosaurus!</p>
-                <OrderDino dino={"Brachiosaurus"} success={success} error={error} />
+                <OrderDino variant={orderVariant} dino={"Brachiosaurus"} success={success} error={error} />
             </main>
         </>
     );
