@@ -16,9 +16,17 @@ export const handler: Handlers<any> = {
     async POST(req, ctx) {
         try {
             await sendOrder(req, ctx);
-            return ctx.render({success: true});
+            return ctx.render({
+                selectionVariant: ctx.state.selectionVariant,
+                orderVariant: ctx.state.orderVariant,
+                success: true
+            });
         } catch (error) {
-            return ctx.render({error});
+            return ctx.render({
+                selectionVariant: ctx.state.selectionVariant,
+                orderVariant: ctx.state.orderVariant,
+                error
+            });
         }
     }
 };
