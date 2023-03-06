@@ -21,7 +21,7 @@ export async function sendOrder(req, ctx) {
         return Promise.reject("The name must not be empty!");
     } else {
         console.log("New order received", name, dino);
-        event(req, ctx, "New Order", [{dino}]);
+        event(req, ctx, "New Order", {dino, variant: ctx.state.orderVariant});
     }
 
     return Promise.resolve();
