@@ -5,7 +5,7 @@ import { Pirsch } from "npm:pirsch-sdk";
 export const client = new Pirsch({
     hostname: config.pirsch.hostname,
     protocol: config.pirsch.protocol,
-    accessToken: config.pirsch.accessToken
+    accessToken: Deno.env.get("PIRSCH_TOKEN")
 });
 
 export function pageView(
