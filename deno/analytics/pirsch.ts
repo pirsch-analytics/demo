@@ -2,7 +2,7 @@ import config from "../deno.json" assert { type: "json" };
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
 import { Pirsch } from "npm:pirsch-sdk";
 
-export const client = new Pirsch({
+const client = new Pirsch({
     hostname: config.pirsch.hostname,
     protocol: config.pirsch.protocol,
     accessToken: Deno.env.get("PIRSCH_TOKEN")
