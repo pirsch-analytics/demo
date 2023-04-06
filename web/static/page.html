@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pirsch Web Demo</title>
+        <style type="text/css">
+            html {
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+                font-family: sans-serif;
+            }
+
+            body {
+                max-width: 900px;
+                padding: 40px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            p {
+                margin: 20px 0;
+                padding: 0;
+            }
+
+            .menu {
+                display: inline-block;
+                background: #91dab4;
+                text-decoration: none;
+                color: #000;
+                border-radius: 3px;
+                padding: 6px 12px;
+                margin: 0 6px 0 0;
+                transition: all 0.3s;
+                cursor: pointer;
+            }
+
+            .menu:hover {
+                background: #91dab4be;
+            }
+        </style>
+
+        <!-- Adjust the data-code attribute with your identification code and remove the data-endpoint and data-dev attribute. -->
+        <script defer type="text/javascript" src="https://localhost.com:9999/pirsch.js"
+            id="pirschjs"
+            data-code="VDo5EE85Ws0yAdq7YtxGOSxbmKFKrBFR"
+            data-endpoint="https://localhost.com:9999/hit"
+            data-dev></script>
+    </head>
+    <body>
+        <h1>Second Page</h1>
+        <p>
+            <a href="/" class="menu">Home</a>
+            <span class="menu">Second Page</span>
+        </p>
+        <p>
+            This page exists to showcase page views. It uses the <strong>pirsch.js</strong> JavaScript snippet instead of the <strong>pirsch-ext.js</strong> snippet simply because it's more lightweight.
+        </p>
+    </body>
+</html>

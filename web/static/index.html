@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pirsch Web Demo</title>
+        <style type="text/css">
+            html {
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+                font-family: sans-serif;
+            }
+
+            body {
+                max-width: 900px;
+                padding: 40px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            p {
+                margin: 20px 0;
+                padding: 0;
+            }
+
+            .menu {
+                display: inline-block;
+                background: #91dab4;
+                text-decoration: none;
+                color: #000;
+                border-radius: 3px;
+                padding: 6px 12px;
+                margin: 0 6px 0 0;
+                transition: all 0.3s;
+                cursor: pointer;
+            }
+
+            .menu:hover {
+                background: #91dab4be;
+            }
+
+            button {
+                border-width: 0;
+                background: #91dab4;
+                color: #000;
+                border-radius: 3px;
+                padding: 12px 24px;
+                font-size: 20px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            button:hover {
+                background: #91dab4be;
+            }
+        </style>
+
+        <!-- Adjust the data-code attribute with your identification code and remove the data-hit-endpoint, data-event-endpoint, and data-dev attribute. -->
+        <script defer type="text/javascript" src="https://localhost.com:9999/pirsch-ext.js"
+            id="pirschextjs"
+            data-code="VDo5EE85Ws0yAdq7YtxGOSxbmKFKrBFR"
+            data-hit-endpoint="https://localhost.com:9999/hit"
+            data-event-endpoint="https://localhost.com:9999/event"
+            data-dev></script>
+    </head>
+    <body>
+        <h1>Welcome to the Pirsch Web Demo!</h1>
+        <p>
+            <span class="menu">Home</span>
+            <a href="/page.html" class="menu">Second Page</a>
+        </p>
+        <p>
+            This demo shows how you can use Pirsch on your website. Appart from tracking page views, it also showcases more advanced features, including:
+            <ul>
+                <li>custom events</li>
+                <li>outbound link tracking</li>
+                <li>tracking file downloads</li>
+                <li>tracking 404 pages</li>
+            </ul>
+        </p>
+        
+        <!-- Custom event tracking using JavaScript, HTML attributes, and CSS classes. -->
+        <h2>Custom Events</h2>
+        <p>
+            Click the buttons below to trigger custom events. There are three methods available to add events to your page:
+            <ul>
+                <li>using JavaScript, manually triggering an event on an action</li>
+                <li>adding a HTML attribute to certain elements, triggering events on click</li>
+                <li>adding a CSS class name to certain elements, triggering events on click</li>
+            </ul>
+        </p>
+        <p>
+            <button id="event-trigger">
+                Trigger Custom Event (JavaScript)
+            </button>
+        </p>
+        <p>
+            <button pirsch-event="HTML Button Clicked" pirsch-meta-key="meta value" pirsch-duration="2">
+                Trigger Custom Event (HTML)
+            </button>
+        </p>
+        <p>
+            <button class="pirsch-event=CSS+Button+Clicked pirsch-meta-key=meta+value pirsch-duration=3">
+                Trigger Custom Event (CSS)
+            </button>
+        </p>
+        <script type="text/javascript">
+            // Wait until the page has fully loaded.
+            document.addEventListener("DOMContentLoaded", () => {
+                // Get the button using the id attribute and add a click event handler.
+                document.getElementById("event-trigger").addEventListener("click", () => {
+                    // Send the event to Pirsch.
+                    pirsch("JS Button Clicked", {
+                        duration: 1,
+                        meta: {
+                            key: "meta value"
+                        }
+                    });
+
+                    // Log to console for debugging.
+                    console.log("JS Button clicked");
+                });
+            });
+        </script>
+
+        <!-- Track outbound links. -->
+        <h2>Outbound Link Tracking</h2>
+        <p>
+            TODO
+        </p>
+
+        <!-- Track file downloads. -->
+        <h2>Tracking File Downloads</h2>
+        <p>
+            TODO
+        </p>
+
+        <!-- Track 404 pages. -->
+        <h2>Tracking 404 Pages</h2>
+        <p>
+            TODO
+        </p>
+    </body>
+</html>
