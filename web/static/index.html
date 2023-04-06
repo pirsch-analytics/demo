@@ -29,6 +29,15 @@
                 padding: 0;
             }
 
+            a {
+                color: #63957b;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
             .menu {
                 display: inline-block;
                 background: #91dab4;
@@ -43,6 +52,7 @@
 
             .menu:hover {
                 background: #91dab4be;
+                text-decoration: none;
             }
 
             button {
@@ -64,7 +74,7 @@
         <!-- Adjust the data-code attribute with your identification code and remove the data-hit-endpoint, data-event-endpoint, and data-dev attribute. -->
         <script defer type="text/javascript" src="https://localhost.com:9999/pirsch-ext.js"
             id="pirschextjs"
-            data-code="VDo5EE85Ws0yAdq7YtxGOSxbmKFKrBFR"
+            data-code="2Mrbk30Wiy4eG1mRQ3S4jRkU2mmHIadm"
             data-hit-endpoint="https://localhost.com:9999/hit"
             data-event-endpoint="https://localhost.com:9999/event"
             data-dev></script>
@@ -132,7 +142,18 @@
         <!-- Track outbound links. -->
         <h2>Outbound Link Tracking</h2>
         <p>
-            TODO
+            Outbound link tracking helps you to identify which links to other websites are clicked the most. Outbound link tracking is automatically added to all external links. Click the link below to trigger an outbound link click event.
+        </p>
+        <p>
+            <a href="https://pirsch.io" target="_blank">Visit pirsch.io (target=_blank)</a><br />
+            <a href="https://docs.pirsch.io">Visit docs.pirsch.io</a>
+        </p>
+        <p>
+            The outbound links below will be ignored, since they have the pirsch-ignore attriube or CSS class set.
+        </p>
+        <p>
+            <a href="https://pirsch.io" target="_blank" pirsch-ignore>Visit pirsch.io</a><br />
+            <a href="https://pirsch.io" target="_blank" class="pirsch-ignore">Visit pirsch.io</a>
         </p>
 
         <!-- Track file downloads. -->
