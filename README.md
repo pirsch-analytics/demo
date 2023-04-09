@@ -4,6 +4,7 @@ This is the official demo repository for [Pirsch Analytics](https://pirsch.io). 
 
 * [Deno](/deno)
 * [Web](/web)
+* [JS SDK](/js-sdk)
 
 ## License
 
