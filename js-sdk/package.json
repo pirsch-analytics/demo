@@ -21,6 +21,6 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.0.3",
-    "pirsch-sdk": "^2.1.2"
+    "pirsch-sdk": "^2.1.3"
   }
 }
