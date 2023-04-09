@@ -1,0 +1,26 @@
+{
+  "name": "js-sdk",
+  "version": "1.0.0",
+  "description": "Pirsch JS SDK client demo.",
+  "main": "main.js",
+  "scripts": {
+    "demo": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/pirsch-analytics/demo"
+  },
+  "keywords": [
+    "Pirsch",
+    "analytics",
+    "sdk",
+    "client",
+    "demo"
+  ],
+  "author": "Emvi Software GmbH",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "pirsch-sdk": "^2.1.2"
+  }
+}
