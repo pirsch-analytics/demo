@@ -74,7 +74,7 @@
         <!-- Adjust the data-code attribute with your identification code and remove the data-hit-endpoint, data-event-endpoint, and data-dev attribute. -->
         <script defer type="text/javascript" src="https://localhost.com:9999/pirsch-extended.js"
             id="pirschextendedjs"
-            data-code="CyUNKqUjHUjlObnNB4NkOqDh3ggn9J5D"
+            data-code="xSuPGrRmAoN5wOrCDw0UryvUXfrrn30j"
             data-hit-endpoint="https://localhost.com:9999/hit"
             data-event-endpoint="https://localhost.com:9999/event"
             data-dev></script>
@@ -134,7 +134,7 @@
                     });
 
                     // Log to console for debugging.
-                    console.log("JS Button clicked");
+                    console.log("JS button clicked");
                 });
             });
         </script>
@@ -173,5 +173,33 @@
         <p>
             <button onclick="pirschNotFound()">404 Page Not Found</button>
         </p>
+
+        <!-- Track programmatic URL changes. -->
+        <h2>Programmatic URL changes</h2>
+        <p>
+            Clicking the following button will change the URL without changing the page.
+        </p>
+        <p>
+            <button id="url-change">Change URL</button>
+            <button id="url-reset">Reset URL</button>
+        </p>
+        <script type="text/javascript">
+            // Wait until the page has fully loaded.
+            document.addEventListener("DOMContentLoaded", () => {
+                // Get the button using the id attribute and add a click event handler.
+                document.getElementById("url-change").addEventListener("click", () => {
+                    // Change the URL.
+                    history.pushState(null, "", "/test");
+
+                    // Log to console for debugging.
+                    console.log("URL change button clicked");
+                });
+
+                document.getElementById("url-reset").addEventListener("click", () => {
+                    history.pushState(null, "", "/");
+                    console.log("URL reset button clicked");
+                });
+            });
+        </script>
     </body>
 </html>
