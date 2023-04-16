@@ -1,0 +1,181 @@
+/*
+ * Create an access key on the integration settings page of your dashboard and enter it here.
+ */
+const accessKey = "";
+
+/*
+ * Adjust the paths to your likings.
+ * The scripts will be available on your Worker URL. Here is an example for pirsch.js:
+ * 
+ * https://round-hill-c3a4.your-account.workers.dev/path/script.js
+ */
+const scriptPath = "/path/script.js";
+const eventScriptPath = "/path/script-e.js";
+const extendedScriptPath = "/path/script-ex.js";
+const sessionScriptPath = "/path/script-s.js";
+
+/*
+ * Adjust the endpoints to your likings.
+ * They will be used for page view and event requests and point towards your Worker URL.
+ * Make sure to not include keywords like "pageview", "hit", "event", and so on, or they will be blocked by ad blockers.
+ */
+const pageViewPath = "/path/pv";
+const eventPath = "/path/e";
+const sessionPath = "/path/s";
+
+/*
+ * To finish the setup, adjust the src, data-endpoint, data-hit-endpoint and data-event-endpoint attributes of your JavaScript snippet.
+ * Here is an example for pirsch.js:
+ * 
+   <script defer type="text/javascript"
+        src="https://round-hill-c3a4.your-account.workers.dev/path/script.js"
+        id="pirschjs"
+        data-endpoint="https://round-hill-c3a4.your-account.workers.dev/path/pv"></script>
+ *
+ * The URL must be adjusted to match your Worker URL.
+ * For pirsch-extended.js, overwrite the endpoints using data-hit-endpoint and data-event-endpoint instead of data-endpoint.
+ * The data-code attribute can be removed.
+ * The id attribute must match the script type:
+ * 
+ * - pirschjs for pirsch.js
+ * - pirscheventsjs for pirsch-events.js
+ * - pirschextendedjs for pirsch-extended.js
+ * - pirschsessionsjs for pirsch-sessions.js
+ */
+
+/*
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * DO NOT CHANGE THE CODE BELOW!
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ */
+
+const pirschScriptURL = "https://api.pirsch.io/pirsch.js";
+const pirschEventScriptURL = "https://api.pirsch.io/pirsch-events.js";
+const pirschExtendedScriptURL = "https://api.pirsch.io/pirsch-extended.js";
+const pirschSessionScriptURL = "https://api.pirsch.io/pirsch-sessions.js";
+const pirschPageViewEndpoint = "https://api.pirsch.io/api/v1/hit";
+const pirschEventEndpoint = "https://api.pirsch.io/api/v1/event";
+const pirschSessionEndpoint = "https://api.pirsch.io/api/v1/session";
+const pirschReferrerQueryParams = [
+  "ref",
+  "referer",
+  "referrer",
+  "source",
+  "utm_source",
+];
+
+export default {
+  async fetch(request, env) {
+    return await handleRequest(request);
+  }
+}
+
+async function handleRequest(request) {
+  const path = new URL(request.url).pathname;
+
+  if (path === scriptPath) {
+    return getScript(request, pirschScriptURL);
+  } else if (path === eventScriptPath) {
+    return getScript(request, pirschEventScriptURL);
+  } else if (path === extendedScriptPath) {
+    return getScript(request, pirschExtendedScriptURL);
+  } else if (path === sessionScriptPath) {
+    return getScript(request, pirschSessionScriptURL);
+  } else if (path === pageViewPath) {
+    return handlePageView(request);
+  } else if (path === eventPath) {
+    return handleEvent(request);
+  } else if (path === sessionPath) {
+    return handleSession(request);
+  }
+
+  return new Response(null, {
+    status: 404
+  });
+}
+
+async function getScript(request, script) {
+    let response = await caches.default.match(request);
+
+    if (!response) {
+        response = await fetch(script);
+        await caches.default.put(request, response.clone());
+    }
+
+    return response;
+}
+
+async function handlePageView(request) {
+  const response = await fetch(pirschPageViewEndpoint, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${accessKey}`
+    },
+    body: JSON.stringify(getBody(request))
+  });
+  return new Response(response.body, {
+    status: response.status
+  });
+}
+
+async function handleEvent(request) {
+  const body = getBody(request);
+  const data = await request.json();
+  body.event_name = data.event_name;
+  body.event_duration = data.event_duration;
+  body.event_meta = data.event_meta;
+  const response = await fetch(pirschEventEndpoint, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${accessKey}`
+    },
+    body: JSON.stringify(body)
+  });
+  return new Response(response.body, {
+    status: 200
+  });
+}
+
+async function handleSession(request) {
+  const response = await fetch(pirschSessionEndpoint, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${accessKey}`
+    },
+    body: JSON.stringify(getBody(request))
+  });
+  return new Response(response.body, {
+    status: 200
+  });
+}
+
+function getBody(request) {
+  const url = new URL(request.url);
+  return {
+    url: url.searchParams.get("url"),
+    code: url.searchParams.get("code"),
+    ip: request.headers.get("CF-Connecting-IP"),
+    user_agent: request.headers.get("User-Agent"),
+    accept_language: request.headers.get("Accept-Language"),
+    title: url.searchParams.get("t"),
+    referrer: getReferrer(request, url),
+    screen_width: Number.parseInt(url.searchParams.get("w"), 10),
+    screen_height: Number.parseInt(url.searchParams.get("h"), 10)
+  };
+}
+
+function getReferrer(request, url) {
+  let referrer = request.headers.get("Referer");
+
+  if (!referrer) {
+    for (const param of pirschReferrerQueryParams) {
+      referrer = url.searchParams.get(param);
+
+      if (referrer) {
+        break;
+      }
+    }
+  }
+
+  return referrer;
+}
