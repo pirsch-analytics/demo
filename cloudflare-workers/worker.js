@@ -1,7 +1,7 @@
 /*
  * Create an access key on the integration settings page of your dashboard and enter it here.
  */
-const accessKey = "";
+const accessKey = "pa_...";
 
 /*
  * Adjust the paths to your likings.
@@ -72,26 +72,33 @@ export default {
 
 async function handleRequest(request) {
   const path = new URL(request.url).pathname;
+  let result;
 
   if (path === scriptPath) {
-    return getScript(request, pirschScriptURL);
+    result = await getScript(request, pirschScriptURL);
   } else if (path === eventScriptPath) {
-    return getScript(request, pirschEventScriptURL);
+    result = await getScript(request, pirschEventScriptURL);
   } else if (path === extendedScriptPath) {
-    return getScript(request, pirschExtendedScriptURL);
+    result = await getScript(request, pirschExtendedScriptURL);
   } else if (path === sessionScriptPath) {
-    return getScript(request, pirschSessionScriptURL);
+    result = await getScript(request, pirschSessionScriptURL);
   } else if (path === pageViewPath) {
-    return handlePageView(request);
+    result = await handlePageView(request);
   } else if (path === eventPath) {
-    return handleEvent(request);
+    result = await handleEvent(request);
   } else if (path === sessionPath) {
-    return handleSession(request);
+    result = await handleSession(request);
+  } else {
+    result = new Response(null, {
+      status: 404
+    });
   }
 
-  return new Response(null, {
-    status: 404
-  });
+  const response = new Response(result.body, result);
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  return response;
 }
 
 async function getScript(request, script) {
