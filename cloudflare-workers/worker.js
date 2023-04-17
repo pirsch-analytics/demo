@@ -24,6 +24,14 @@ const eventPath = "/path/e";
 const sessionPath = "/path/s";
 
 /*
+ * Sets the Access-Controll-Allow-Origin header.
+ * You can leave this as is to allow traffic from any source, or add your domain.
+ * 
+ * https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
+ */
+const accessControlAllowOrigin = "*";
+
+/*
  * To finish the setup, adjust the src, data-endpoint, data-hit-endpoint and data-event-endpoint attributes of your JavaScript snippet.
  * Here is an example for pirsch.js:
  * 
@@ -95,7 +103,7 @@ async function handleRequest(request) {
   }
 
   const response = new Response(result.body, result);
-  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("Access-Control-Allow-Origin", accessControlAllowOrigin);
   response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
   return response;
