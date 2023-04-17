@@ -32,7 +32,7 @@ You can also adjust the `Access-Control-Allow-Origin` if you like.
 const accessControlAllowOrigin = "your-domain.com";
 
 // Allow all sources.
-const accessControlAllowOrigin = "your-domain.com";
+const accessControlAllowOrigin = "*";
 ```
 
 After making your adjustments, place the regular tracking snippet on your website. You can use any of the snippets available: `pirsch.js` for page views, `pirsch-events.js` for events, `pirsch-sessions.js` to keep sessions alive, or `pirsch-extended.js` to combine all of them including some additional features. Adjust the snippets to use your Cloudflare worker like this.
