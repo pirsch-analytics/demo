@@ -12,7 +12,7 @@ Next, go to your Pirsch dashboard integration settings page and add a new client
 const accessKey = "pa_x92lfoe...";
 ```
 
-Adjust the paths to your likings. These will later be used to integrate the snippet on your page and shouldn't contain any keywords blocked by ad blockers, like *tracker*, *event*, or *hit*. By default, they will look like this.
+Adjust the paths to your liking. These will later be used to integrate the snippet on your page and shouldn't contain any keywords blocked by ad blockers, like *tracker*, *event*, or *hit*. By default, they will look like this.
 
 ```js
 const scriptPath = "/path/script.js";
