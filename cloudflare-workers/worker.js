@@ -173,24 +173,8 @@ function getBody(request) {
     user_agent: request.headers.get("User-Agent"),
     accept_language: request.headers.get("Accept-Language"),
     title: url.searchParams.get("t"),
-    referrer: getReferrer(request, url),
+    referrer: url.searchParams.get("ref"),
     screen_width: Number.parseInt(url.searchParams.get("w"), 10),
     screen_height: Number.parseInt(url.searchParams.get("h"), 10)
   };
-}
-
-function getReferrer(request, url) {
-  let referrer = request.headers.get("Referer");
-
-  if (!referrer) {
-    for (const param of pirschReferrerQueryParams) {
-      referrer = url.searchParams.get(param);
-
-      if (referrer) {
-        break;
-      }
-    }
-  }
-
-  return referrer;
 }
