@@ -134,20 +134,15 @@ async function handlePageView(request) {
 }
 
 async function handleEvent(request) {
-  const body = getBody(request);
-  const data = await request.json();
-  body.event_name = data.event_name;
-  body.event_duration = data.event_duration;
-  body.event_meta = data.event_meta;
   const response = await fetch(pirschEventEndpoint, {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${accessKey}`
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(await getData(request))
   });
   return new Response(response.body, {
-    status: 200
+    status: response.status
   });
 }
 
@@ -157,10 +152,10 @@ async function handleSession(request) {
     headers: {
       "Authorization": `Bearer ${accessKey}`
     },
-    body: JSON.stringify(getBody(request))
+    body: JSON.stringify(await getData(request))
   });
   return new Response(response.body, {
-    status: 200
+    status: response.status
   });
 }
 
@@ -177,4 +172,12 @@ function getBody(request) {
     screen_width: Number.parseInt(url.searchParams.get("w"), 10),
     screen_height: Number.parseInt(url.searchParams.get("h"), 10)
   };
+}
+
+async function getData(request) {
+  const data = await request.json();
+  data.ip = request.headers.get("CF-Connecting-IP");
+  data.user_agent = request.headers.get("User-Agent");
+  data.accept_language = request.headers.get("Accept-Language");
+  return data;
 }
