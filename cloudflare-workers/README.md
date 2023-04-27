@@ -15,14 +15,13 @@ const accessKey = "pa_x92lfoe...";
 Adjust the paths to your liking. These will later be used to integrate the snippet on your page and shouldn't contain any keywords blocked by ad blockers, like *tracker*, *event*, or *hit*. By default, they will look like this.
 
 ```js
-const scriptPath = "/path/script.js";
-const eventScriptPath = "/path/script-e.js";
-const extendedScriptPath = "/path/script-ex.js";
-const sessionScriptPath = "/path/script-s.js";
-
-const pageViewPath = "/path/pv";
-const eventPath = "/path/e";
-const sessionPath = "/path/s";
+const scriptPath = "/static/files/p.js";
+const eventScriptPath = "/static/files/ev.js";
+const extendedScriptPath = "/static/files/ext.js";
+const sessionScriptPath = "/static/files/ses.js";
+const pageViewPath = "/p/pv";
+const eventPath = "/p/e";
+const sessionPath = "/p/s";
 ```
 
 You can also adjust the `Access-Control-Allow-Origin` if you like.
@@ -39,9 +38,9 @@ After making your adjustments, place the regular tracking snippet on your websit
 
 ```html
 <script defer type="text/javascript"
-    src="https://round-hill-c3a4.your-account.workers.dev/path/script.js"
+    src="https://round-hill-c3a4.your-account.workers.dev/static/files/p.js"
     id="pirschjs"
-    data-endpoint="https://round-hill-c3a4.your-account.workers.dev/path/pv"></script>
+    data-endpoint="https://round-hill-c3a4.your-account.workers.dev/p/pv"></script>
 ```
 
 `https://round-hill-c3a4.your-account.workers.dev` needs to be replaced with your own worker URL. If you made adjustments to the paths, you also need to change `/path/script.js` and `/path/pv`. This example uses the `pirsch.js` snippet. If you would like to use another script, you also need to adjust the `id` attribute to `pirscheventsjs`, `pirschsessionsjs`, or `pirschextendedjs`.

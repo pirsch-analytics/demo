@@ -7,21 +7,21 @@ const accessKey = "pa_...";
  * Adjust the paths to your likings.
  * The scripts will be available on your Worker URL. Here is an example for pirsch.js:
  * 
- * https://round-hill-c3a4.your-account.workers.dev/path/script.js
+ * https://round-hill-c3a4.your-account.workers.dev/static/files/p.js
  */
-const scriptPath = "/path/script.js";
-const eventScriptPath = "/path/script-e.js";
-const extendedScriptPath = "/path/script-ex.js";
-const sessionScriptPath = "/path/script-s.js";
+const scriptPath = "/static/files/p.js";
+const eventScriptPath = "/static/files/ev.js";
+const extendedScriptPath = "/static/files/ext.js";
+const sessionScriptPath = "/static/files/ses.js";
 
 /*
  * Adjust the endpoints to your likings.
  * They will be used for page view and event requests and point towards your Worker URL.
  * Make sure to not include keywords like "pageview", "hit", "event", and so on, or they will be blocked by ad blockers.
  */
-const pageViewPath = "/path/pv";
-const eventPath = "/path/e";
-const sessionPath = "/path/s";
+const pageViewPath = "/p/pv";
+const eventPath = "/p/e";
+const sessionPath = "/p/s";
 
 /*
  * Sets the Access-Controll-Allow-Origin header.
