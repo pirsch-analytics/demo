@@ -55,7 +55,7 @@
                 text-decoration: none;
             }
 
-            button {
+            button, input[type~="submit"] {
                 border-width: 0;
                 background: #91dab4;
                 color: #000;
@@ -69,12 +69,22 @@
             button:hover {
                 background: #91dab4be;
             }
+
+            input {
+                max-width: 300px;
+                border: 1px solid #91dab4;
+                color: #000;
+                border-radius: 3px;
+                padding: 12px;
+                font-size: 20px;
+                margin: 4px 0 12px 0;
+            }
         </style>
 
         <!-- Adjust the data-code attribute with your identification code and remove the data-hit-endpoint, data-event-endpoint, and data-dev attribute. -->
         <script defer type="text/javascript" src="https://localhost.com:9999/pirsch-extended.js"
             id="pirschextendedjs"
-            data-code="clTrzhJ0DKbXsfOJrew2lzo1hWXhsOPB"
+            data-code="HnjsoKPyaSCtRpUs4Z9Gv3mzw9K8uKk5"
             data-hit-endpoint="https://localhost.com:9999/hit"
             data-event-endpoint="https://localhost.com:9999/event"
             data-dev></script>
@@ -205,6 +215,34 @@
                 document.getElementById("url-reset").addEventListener("click", () => {
                     history.pushState(null, "", "/");
                     console.log("URL reset button clicked");
+                });
+            });
+        </script>
+
+        <!-- Track forms. -->
+        <h2>Form Submissions</h2>
+        <p>
+            Submitting the following form will create an event with metadata.
+        </p>
+        <form method="post" id="form">
+            <label>Enter a message:</label>
+            <br />
+            <input type="text" name="message" id="message" required />
+            <br />
+            <input type="submit" value="Submit" />
+        </form>
+        <script type="text/javascript">
+            // Wait until the page has fully loaded.
+            document.addEventListener("DOMContentLoaded", () => {
+                // Get the form using the id attribute and add a submission event handler.
+                document.getElementById("form").addEventListener("submit", e => {
+                    // Get the message and send the event.
+                    const input = document.getElementById("message");
+                    pirsch("Form Submission", {
+                        meta: {
+                            message: input.value
+                        }
+                    });
                 });
             });
         </script>
