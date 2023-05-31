@@ -64,16 +64,9 @@ const pirschSessionScriptURL = "https://api.pirsch.io/pirsch-sessions.js";
 const pirschPageViewEndpoint = "https://api.pirsch.io/api/v1/hit";
 const pirschEventEndpoint = "https://api.pirsch.io/api/v1/event";
 const pirschSessionEndpoint = "https://api.pirsch.io/api/v1/session";
-const pirschReferrerQueryParams = [
-  "ref",
-  "referer",
-  "referrer",
-  "source",
-  "utm_source",
-];
 
 export default {
-  async fetch(request, env) {
+  async fetch(request) {
     return await handleRequest(request);
   }
 }
@@ -152,7 +145,10 @@ async function handleSession(request) {
     headers: {
       "Authorization": `Bearer ${accessKey}`
     },
-    body: JSON.stringify(await getData(request))
+    body: JSON.stringify({
+      ip: request.headers.get("CF-Connecting-IP"),
+      user_agent: request.headers.get("User-Agent")
+    })
   });
   return new Response(response.body, {
     status: response.status
