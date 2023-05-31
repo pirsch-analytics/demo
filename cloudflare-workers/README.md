@@ -43,4 +43,4 @@ After making your adjustments, place the regular tracking snippet on your websit
     data-endpoint="https://round-hill-c3a4.your-account.workers.dev/p/pv"></script>
 ```
 
-`https://round-hill-c3a4.your-account.workers.dev` needs to be replaced with your own worker URL. If you made adjustments to the paths, you also need to change `/path/script.js` and `/path/pv`. This example uses the `pirsch.js` snippet. If you would like to use another script, you also need to adjust the `id` attribute to `pirscheventsjs`, `pirschsessionsjs`, or `pirschextendedjs`.
+`https://round-hill-c3a4.your-account.workers.dev` needs to be replaced with your own worker URL. If you made adjustments to the paths, you also need to change `/static/files/p.js` and `/p/pv`. This example uses the `pirsch.js` snippet. If you would like to use another script, you also need to adjust the `id` attribute to `pirscheventsjs`, `pirschsessionsjs`, or `pirschextendedjs`. The extended script uses the `data-hit-endpoint`, `data-event-endpoint`, and `data-session-endpoint` endpoint parameters.
