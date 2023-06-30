@@ -82,9 +82,9 @@
         </style>
 
         <!-- Adjust the data-code attribute with your identification code and remove the data-hit-endpoint, data-event-endpoint, and data-dev attribute. -->
-        <script defer type="text/javascript" src="https://localhost.com:9999/pirsch-extended.js"
+        <script defer src="https://localhost.com:9999/pirsch-extended.js"
             id="pirschextendedjs"
-            data-code="Q3whFZqI1KUqCplzFv8N5BQHl0Q9P6et"
+            data-code="Te9uQLjMEAzzRsRJII9GUJEpRt0YIwUn"
             data-hit-endpoint="https://localhost.com:9999/hit"
             data-event-endpoint="https://localhost.com:9999/event"
             data-dev></script>
@@ -130,7 +130,7 @@
                 Trigger Custom Event (CSS)
             </button>
         </p>
-        <script type="text/javascript">
+        <script>
             // Wait until the page has fully loaded.
             document.addEventListener("DOMContentLoaded", () => {
                 // Get the button using the id attribute and add a click event handler.
@@ -200,7 +200,7 @@
             <button id="url-change">Change URL</button>
             <button id="url-reset">Reset URL</button>
         </p>
-        <script type="text/javascript">
+        <script>
             // Wait until the page has fully loaded.
             document.addEventListener("DOMContentLoaded", () => {
                 // Get the button using the id attribute and add a click event handler.
@@ -231,7 +231,7 @@
             <br />
             <input type="submit" value="Submit" />
         </form>
-        <script type="text/javascript">
+        <script>
             // Wait until the page has fully loaded.
             document.addEventListener("DOMContentLoaded", () => {
                 // Get the form using the id attribute and add a submission event handler.
@@ -245,6 +245,41 @@
                     });
                 });
             });
+        </script>
+
+        <!--
+            Track the scroll depth. You can configure how many events are being tracked by modifiying the "steps" variable.
+            100% scroll / steps = number of events.
+        -->
+        <script>
+            const steps = 5;
+
+            document.addEventListener("DOMContentLoaded", () => {
+                let depth = 0;
+                let step = 0;
+
+                window.addEventListener("scroll", () => {
+                    const currentDepth = getScrollPercent();
+
+                    if (currentDepth > depth) {
+                        depth = currentDepth;
+                        const currentStep = Math.round(depth/(100/steps));
+
+                        if (currentStep > step) {
+                            step = currentStep;
+                            pirsch("Scroll Depth", {meta: {depth: step*(100/steps)+"%"}});
+                        }
+                    }
+                });
+            });
+
+            function getScrollPercent() {
+                const h = document.documentElement, 
+                    b = document.body,
+                    st = 'scrollTop',
+                    sh = 'scrollHeight';
+                return Math.floor((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100);
+            }
         </script>
     </body>
 </html>

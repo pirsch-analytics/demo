@@ -6,6 +6,7 @@ This demo shows how you can use Pirsch on your website using JavaScript. Appart 
 * outbound link tracking
 * tracking file downloads
 * tracking 404 pages
+* events to track the scroll depth
 
 ## Configuration
 
