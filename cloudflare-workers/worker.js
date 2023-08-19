@@ -66,40 +66,40 @@ const pirschEventEndpoint = "https://api.pirsch.io/api/v1/event";
 const pirschSessionEndpoint = "https://api.pirsch.io/api/v1/session";
 
 export default {
-  async fetch(request) {
-    return await handleRequest(request);
-  }
+    async fetch(request) {
+        return await handleRequest(request);
+    }
 }
 
 async function handleRequest(request) {
-  const path = new URL(request.url).pathname;
-  let result;
+    const path = new URL(request.url).pathname;
+    let result;
 
-  if (path === scriptPath) {
-    result = await getScript(request, pirschScriptURL);
-  } else if (path === eventScriptPath) {
-    result = await getScript(request, pirschEventScriptURL);
-  } else if (path === extendedScriptPath) {
-    result = await getScript(request, pirschExtendedScriptURL);
-  } else if (path === sessionScriptPath) {
-    result = await getScript(request, pirschSessionScriptURL);
-  } else if (path === pageViewPath) {
-    result = await handlePageView(request);
-  } else if (path === eventPath) {
-    result = await handleEvent(request);
-  } else if (path === sessionPath) {
-    result = await handleSession(request);
-  } else {
-    result = new Response(null, {
-      status: 404
-    });
-  }
+    if (path === scriptPath) {
+        result = await getScript(request, pirschScriptURL);
+    } else if (path === eventScriptPath) {
+        result = await getScript(request, pirschEventScriptURL);
+    } else if (path === extendedScriptPath) {
+        result = await getScript(request, pirschExtendedScriptURL);
+    } else if (path === sessionScriptPath) {
+        result = await getScript(request, pirschSessionScriptURL);
+    } else if (path === pageViewPath) {
+        result = await handlePageView(request);
+    } else if (path === eventPath) {
+        result = await handleEvent(request);
+    } else if (path === sessionPath) {
+        result = await handleSession(request);
+    } else {
+        result = new Response(null, {
+            status: 404
+        });
+    }
 
-  const response = new Response(result.body, result);
-  response.headers.set("Access-Control-Allow-Origin", accessControlAllowOrigin);
-  response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  return response;
+    const response = new Response(result.body, result);
+    response.headers.set("Access-Control-Allow-Origin", accessControlAllowOrigin);
+    response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    return response;
 }
 
 async function getScript(request, script) {
@@ -114,66 +114,66 @@ async function getScript(request, script) {
 }
 
 async function handlePageView(request) {
-  const response = await fetch(pirschPageViewEndpoint, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${accessKey}`
-    },
-    body: JSON.stringify(getBody(request))
-  });
-  return new Response(response.body, {
-    status: response.status
-  });
+    const response = await fetch(pirschPageViewEndpoint, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${accessKey}`
+        },
+        body: JSON.stringify(getBody(request))
+    });
+    return new Response(response.body, {
+        status: response.status
+    });
 }
 
 async function handleEvent(request) {
-  const response = await fetch(pirschEventEndpoint, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${accessKey}`
-    },
-    body: JSON.stringify(await getData(request))
-  });
-  return new Response(response.body, {
-    status: response.status
-  });
+    const response = await fetch(pirschEventEndpoint, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${accessKey}`
+        },
+        body: JSON.stringify(await getData(request))
+    });
+    return new Response(response.body, {
+        status: response.status
+    });
 }
 
 async function handleSession(request) {
-  const response = await fetch(pirschSessionEndpoint, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${accessKey}`
-    },
-    body: JSON.stringify({
-      ip: request.headers.get("CF-Connecting-IP"),
-      user_agent: request.headers.get("User-Agent")
-    })
-  });
-  return new Response(response.body, {
-    status: response.status
-  });
+    const response = await fetch(pirschSessionEndpoint, {
+      method: "POST",
+      headers: {
+          "Authorization": `Bearer ${accessKey}`
+      },
+      body: JSON.stringify({
+          ip: request.headers.get("CF-Connecting-IP"),
+          user_agent: request.headers.get("User-Agent")
+      })
+    });
+    return new Response(response.body, {
+        status: response.status
+    });
 }
 
 function getBody(request) {
-  const url = new URL(request.url);
-  return {
-    url: url.searchParams.get("url"),
-    code: url.searchParams.get("code"),
-    ip: request.headers.get("CF-Connecting-IP"),
-    user_agent: request.headers.get("User-Agent"),
-    accept_language: request.headers.get("Accept-Language"),
-    title: url.searchParams.get("t"),
-    referrer: url.searchParams.get("ref"),
-    screen_width: Number.parseInt(url.searchParams.get("w"), 10),
-    screen_height: Number.parseInt(url.searchParams.get("h"), 10)
-  };
+    const url = new URL(request.url);
+    return {
+        url: url.searchParams.get("url"),
+        code: url.searchParams.get("code"),
+        ip: request.headers.get("CF-Connecting-IP"),
+        user_agent: request.headers.get("User-Agent"),
+        accept_language: request.headers.get("Accept-Language"),
+        title: url.searchParams.get("t"),
+        referrer: url.searchParams.get("ref"),
+        screen_width: Number.parseInt(url.searchParams.get("w"), 10),
+        screen_height: Number.parseInt(url.searchParams.get("h"), 10)
+    };
 }
 
 async function getData(request) {
-  const data = await request.json();
-  data.ip = request.headers.get("CF-Connecting-IP");
-  data.user_agent = request.headers.get("User-Agent");
-  data.accept_language = request.headers.get("Accept-Language");
-  return data;
+    const data = await request.json();
+    data.ip = request.headers.get("CF-Connecting-IP");
+    data.user_agent = request.headers.get("User-Agent");
+    data.accept_language = request.headers.get("Accept-Language");
+    return data;
 }
