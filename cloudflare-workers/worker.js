@@ -99,6 +99,7 @@ async function handleRequest(request) {
     response.headers.set("Access-Control-Allow-Origin", accessControlAllowOrigin);
     response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    response.headers.set("Accept-CH", "Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version, Sec-CH-Width, Sec-CH-Viewport-Width");
     return response;
 }
 
@@ -147,7 +148,13 @@ async function handleSession(request) {
       },
       body: JSON.stringify({
           ip: request.headers.get("CF-Connecting-IP"),
-          user_agent: request.headers.get("User-Agent")
+          user_agent: request.headers.get("User-Agent"),
+          sec_ch_ua: request.headers.get("Sec-CH-UA"),
+          sec_ch_ua_mobile: request.headers.get("Sec-CH-UA-Mobile"),
+          sec_ch_ua_platform: request.headers.get("Sec-CH-UA-Platform"),
+          sec_ch_ua_platform_version: request.headers.get("Sec-CH-UA-Platform-Version"),
+          sec_ch_width: request.headers.get("Sec-CH-Width"),
+          sec_ch_viewport_width: request.headers.get("Sec-CH-Viewport-Width")
       })
     });
     return new Response(response.body, {
@@ -163,6 +170,12 @@ function getBody(request) {
         ip: request.headers.get("CF-Connecting-IP"),
         user_agent: request.headers.get("User-Agent"),
         accept_language: request.headers.get("Accept-Language"),
+        sec_ch_ua: request.headers.get("Sec-CH-UA"),
+        sec_ch_ua_mobile: request.headers.get("Sec-CH-UA-Mobile"),
+        sec_ch_ua_platform: request.headers.get("Sec-CH-UA-Platform"),
+        sec_ch_ua_platform_version: request.headers.get("Sec-CH-UA-Platform-Version"),
+        sec_ch_width: request.headers.get("Sec-CH-Width"),
+        sec_ch_viewport_width: request.headers.get("Sec-CH-Viewport-Width"),
         title: url.searchParams.get("t"),
         referrer: url.searchParams.get("ref"),
         screen_width: Number.parseInt(url.searchParams.get("w"), 10),
@@ -175,5 +188,11 @@ async function getData(request) {
     data.ip = request.headers.get("CF-Connecting-IP");
     data.user_agent = request.headers.get("User-Agent");
     data.accept_language = request.headers.get("Accept-Language");
+    data.sec_ch_ua = request.headers.get("Sec-CH-UA");
+    data.sec_ch_ua_mobile = request.headers.get("Sec-CH-UA-Mobile");
+    data.sec_ch_ua_platform = request.headers.get("Sec-CH-UA-Platform");
+    data.sec_ch_ua_platform_version = request.headers.get("Sec-CH-UA-Platform-Version");
+    data.sec_ch_width = request.headers.get("Sec-CH-Width");
+    data.sec_ch_viewport_width = request.headers.get("Sec-CH-Viewport-Width");
     return data;
 }
