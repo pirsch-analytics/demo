@@ -9,7 +9,10 @@ async function main() {
         const client = new Pirsch({
             hostname: process.env.HOSTNAME,
             clientId: process.env.CLIENT_ID,
-            clientSecret: process.env.CLIENT_SECRET
+            clientSecret: process.env.CLIENT_SECRET,
+            
+            // Only required for proxies and testing.
+            //baseUrl: "https://localhost.com:9999",
         });
 
         // Read the domain for this dashboard.
