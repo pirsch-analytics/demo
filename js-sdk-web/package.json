@@ -1,0 +1,25 @@
+{
+  "name": "js-sdk-web",
+  "version": "1.0.0",
+  "description": "Pirsch JS SDK demo.",
+  "main": "main.js",
+  "scripts": {
+    "build": "rm -rf static/dist && tsc && vite build",
+    "demo": "npm run build && vite preview"
+  },
+  "keywords": [
+    "Pirsch",
+    "analytics",
+    "sdk",
+    "demo"
+  ],
+  "author": "Emvi Software GmbH",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "pirsch-sdk": "^2.4.1"
+  }
+}
