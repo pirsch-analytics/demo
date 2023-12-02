@@ -7,10 +7,11 @@ This demo shows how you can use Pirsch on your website using JavaScript. Appart 
 * tracking file downloads
 * tracking 404 pages
 * events to track the scroll depth
+* tracking video playback time
 
 ## Configuration
 
-Adjust the snippets in `static/index.html` and `static/page.html` with your identification code and remove the `data-dev` and `data-*-endpoint` attributes.
+Adjust the snippets in the HTML files in `static` with your identification code and remove the `data-dev` and `data-*-endpoint` attributes.
 
 ## Usage
 
