@@ -26,7 +26,7 @@
             <a href="/video.html" class="menu menu-active">Video Tracking</a>
         </p>
         <p>
-            Track whether a YouTube or Vimeo video was started, completed, and how long it played. If you have multiple videos on a site, change the event name for each of them or add the title in the meta data.
+            Track whether a YouTube or Vimeo video was started, and completed, and how long it played. If you have multiple videos on a site, change the event name for each of them or add the title in the metadata.
         </p>
 
         <!-- YouTube example. The div will be replaced with the player. -->
@@ -35,7 +35,7 @@
         <script>
             // Initialize the player and set up event handlers for state changes.
             // The progress will be tracked as a number between 0 and 100%.
-            // The started and completed state are tracked as 0 or 1.
+            // The started and completed states are tracked as 0 or 1.
             let player;
             let progress = 0;
             let started = 0;
@@ -48,7 +48,7 @@
                     width: "640",
                     videoId: "dQw4w9WgXcQ",
                     events: {
-                        "onStateChange": (event) => {
+                        "onStateChange": event => {
                             if (event.data === YT.PlayerState.PLAYING) {
                                 started = 1;
 
