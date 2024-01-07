@@ -1,3 +1,5 @@
+<?php include_once('config.php'); ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,17 +9,22 @@
         <!-- Adjust the data-code attribute with your identification code and remove the data-hit-endpoint, data-event-endpoint, and data-dev attribute. -->
         <script defer src="https://localhost.com:9999/pirsch-extended.js"
             id="pirschextendedjs"
-            data-code="zfnS1PJs85VbNebOPPpvgLOWMsnlINCs"
-            data-hit-endpoint="https://localhost.com:9999/hit"
-            data-event-endpoint="https://localhost.com:9999/event"
-            data-dev></script>
+            data-code="<?php echo constant('IDENTIFICATION_CODE'); ?>"
+            data-tag-Author="John",
+            data-tag="foo,Bar"
+            <?php
+            if (constant('DEV')) {
+                echo 'data-hit-endpoint="https://localhost.com:9999/hit" data-event-endpoint="https://localhost.com:9999/event" data-dev';
+            }
+            ?>
+            ></script>
     </head>
     <body>
         <h1>Welcome to the Pirsch Web Demo!</h1>
         <p>
             <a href="/" class="menu menu-active">Home</a>
-            <a href="/page.html" class="menu">Second Page</a>
-            <a href="/video.html" class="menu">Video Tracking</a>
+            <a href="/page.php" class="menu">Second Page</a>
+            <a href="/video.php" class="menu">Video Tracking</a>
         </p>
         <p>
             This demo shows how you can use Pirsch on your website. Appart from tracking page views, it also showcases more advanced features, including:

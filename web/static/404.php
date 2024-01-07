@@ -1,3 +1,5 @@
+<?php include_once('config.php'); ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,10 +9,13 @@
         <!-- Adjust the data-code attribute with your identification code and remove the data-hit-endpoint, data-event-endpoint, and data-dev attribute. -->
         <script defer src="https://localhost.com:9999/pirsch-extended.js"
             id="pirschextendedjs"
-            data-code="zfnS1PJs85VbNebOPPpvgLOWMsnlINCs"
-            data-hit-endpoint="https://localhost.com:9999/hit"
-            data-event-endpoint="https://localhost.com:9999/event"
-            data-dev></script>
+            data-code="<?php echo constant('IDENTIFICATION_CODE'); ?>"
+            <?php
+            if (constant('DEV')) {
+                echo 'data-hit-endpoint="https://localhost.com:9999/hit" data-event-endpoint="https://localhost.com:9999/event" data-dev';
+            }
+            ?>
+            ></script>
     </head>
     <body>
         <h1>Error 404 - Page Not Found</h1>

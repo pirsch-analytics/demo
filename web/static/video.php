@@ -1,3 +1,5 @@
+<?php include_once('config.php'); ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,10 +9,13 @@
         <!-- Adjust the data-code attribute with your identification code and remove the data-hit-endpoint, data-event-endpoint, and data-dev attribute. -->
         <script defer src="https://localhost.com:9999/pirsch-extended.js"
             id="pirschextendedjs"
-            data-code="zfnS1PJs85VbNebOPPpvgLOWMsnlINCs"
-            data-hit-endpoint="https://localhost.com:9999/hit"
-            data-event-endpoint="https://localhost.com:9999/event"
-            data-dev></script>
+            data-code="<?php echo constant('IDENTIFICATION_CODE'); ?>"
+            <?php
+            if (constant('DEV')) {
+                echo 'data-hit-endpoint="https://localhost.com:9999/hit" data-event-endpoint="https://localhost.com:9999/event" data-dev';
+            }
+            ?>
+            ></script>
 
         <!-- Add the YouTube iframe API script. -->
         <script src="https://www.youtube.com/iframe_api"></script>
@@ -22,8 +27,8 @@
         <h1>Video Tracking</h1>
         <p>
             <a href="/" class="menu">Home</a>
-            <a href="page.html" class="menu">Second Page</a>
-            <a href="/video.html" class="menu menu-active">Video Tracking</a>
+            <a href="page.php" class="menu">Second Page</a>
+            <a href="/video.php" class="menu menu-active">Video Tracking</a>
         </p>
         <p>
             Track whether a YouTube or Vimeo video was started, and completed, and how long it played. If you have multiple videos on a site, change the event name for each of them or add the title in the metadata.

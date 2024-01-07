@@ -11,11 +11,13 @@ This demo shows how you can use Pirsch on your website using JavaScript. Appart 
 
 ## Configuration
 
-Adjust the snippets in the HTML files in `static` with your identification code and remove the `data-dev` and `data-*-endpoint` attributes.
+This demo requires PHP.
+
+Adjust `config.php` in `static` with your identification code and set `dev` to `FALSE` if you're not testing locally.
 
 ## Usage
 
-Use any HTTP server you like to serve the `static` directory. Here is an example using PHP.
+Use any PHP server you like to serve the `static` directory. Here is an example using the command line.
 
 ```php
 cd demo/web/static
