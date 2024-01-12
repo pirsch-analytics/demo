@@ -15,17 +15,27 @@ async function main() {
             //baseUrl: "https://localhost.com:9999",
         });
 
-        // Read the domain for this dashboard.
+        console.log("Reading the domain.");
         const domain = await client.domain();
         console.log(domain);
+        console.log("----------------------------");
 
-        // Get the total visitor statistics.
-        const stats = await client.totalVisitors({
+        console.log("Getting the total visitor statistics.");
+        const visitorStats = await client.totalVisitors({
             id: domain.id,
             from: new Date(2023, 0, 1),
             to: new Date()
         });
-        console.log(stats);
+        console.log(visitorStats);
+        console.log("----------------------------");
+
+        console.log("Getting page statistics for today.");
+        const pageStats = await client.pages({
+            id: domain.id,
+            from: new Date(),
+            to: new Date()
+        });
+        console.log(pageStats);
     } catch (error) {
         console.error(error);
     }
