@@ -36,6 +36,26 @@ async function main() {
             to: new Date()
         });
         console.log(pageStats);
+        console.log("----------------------------");
+
+        console.log("Getting event metadata.");
+        const eventMetadataStats = await client.eventMetadata({
+            id: domain.id,
+            from: new Date(),
+            to: new Date(),
+            event: "Registration",
+            event_meta_key: "affiliate"
+        });
+        console.log(eventMetadataStats);
+        console.log("----------------------------");
+
+        console.log("Getting event list.");
+        const eventList = await client.listEvents({
+            id: domain.id,
+            from: new Date(),
+            to: new Date()
+        });
+        console.log(eventList);
     } catch (error) {
         console.error(error);
     }
