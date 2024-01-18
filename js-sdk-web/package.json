@@ -20,6 +20,6 @@
     "vite": "^5.0.11"
   },
   "dependencies": {
-    "pirsch-sdk": "^2.4.6"
+    "pirsch-sdk": "^2.5.0"
   }
 }

@@ -56,6 +56,16 @@ async function main() {
             to: new Date()
         });
         console.log(eventList);
+        console.log("----------------------------");
+
+        console.log("Getting event pages.");
+        const eventPageStats = await client.eventPages({
+            id: domain.id,
+            from: new Date(),
+            to: new Date(),
+            event: "Registration"
+        });
+        console.log(eventPageStats);
     } catch (error) {
         console.error(error);
     }
