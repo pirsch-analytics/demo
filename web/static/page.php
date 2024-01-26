@@ -6,13 +6,12 @@
         <title>Pirsch Web Demo</title>
         <link rel="stylesheet" type="text/css" href="style.css" />
 
-        <!-- Adjust the data-code attribute with your identification code and remove the data-endpoint and data-dev attribute. -->
-        <script defer type="text/javascript" src="https://localhost.com:9999/pirsch.js"
-            id="pirschjs"
+        <script defer src="<?php echo constant('SCRIPT') ?>"
+            id="pirschextendedjs"
             data-code="<?php echo constant('IDENTIFICATION_CODE'); ?>"
             <?php
             if (constant('DEV')) {
-                echo 'data-hit-endpoint="https://localhost.com:9999/hit" data-dev';
+                echo 'data-hit-endpoint="'.constant('HIT_ENDPOINT').'" data-dev';
             }
             ?>
             ></script>
