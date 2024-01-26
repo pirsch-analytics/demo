@@ -13,7 +13,7 @@ This demo shows how you can use Pirsch on your website using JavaScript. Appart 
 
 This demo requires PHP.
 
-Adjust `config.php` in `static` with your identification code and set `dev` to `FALSE` if you're not testing locally.
+Copy and rename `config_sample.php` to `config.php` in `static` and update it with your identification code and set `dev` to `FALSE` if you're not testing locally.
 
 ## Usage
 
