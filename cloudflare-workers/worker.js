@@ -35,8 +35,7 @@ const accessControlAllowOrigin = "*";
  * To finish the setup, adjust the src, data-endpoint, data-hit-endpoint and data-event-endpoint attributes of your JavaScript snippet.
  * Here is an example for pirsch.js:
  * 
-   <script defer type="text/javascript"
-        src="https://round-hill-c3a4.your-account.workers.dev/path/script.js"
+   <script defer src="https://round-hill-c3a4.your-account.workers.dev/path/script.js"
         id="pirschjs"
         data-endpoint="https://round-hill-c3a4.your-account.workers.dev/path/pv"></script>
  *
