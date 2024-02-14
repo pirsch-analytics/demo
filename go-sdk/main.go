@@ -2,27 +2,42 @@ package main
 
 import (
 	"fmt"
-	pirsch "github.com/pirsch-analytics/pirsch-go-sdk/v2/pkg"
 	"log/slog"
 	"net/http"
+
+	pirsch "github.com/pirsch-analytics/pirsch-go-sdk/v2/pkg"
 )
 
 const (
 	// The base URL. Usually https://pirsch.io.
 	baseURL = "https://localhost.com:9999"
 
-	// Your client secret (access key, not an oAuth client!).
-	clientSecret = "pa_CMmYb2B15lMUM9tFt1GO9df4Efml0WvBgvGxb3ksCqif2"
+	// Your client access key OR client ID and secret for oAuth.
+	clientAccessKey = ""
+	clientID        = ""
+	clientSecret    = ""
 
 	// The server port, in case you need to change it.
 	serverPort = 8900
 )
 
 func main() {
+	var client *pirsch.Client
+
+	if clientAccessKey != "" {
+		client = pirsch.NewClient("", clientAccessKey, &pirsch.ClientConfig{
+			BaseURL: baseURL,
+		})
+	} else if clientID != "" && clientSecret != "" {
+		client = pirsch.NewClient(clientID, clientSecret, &pirsch.ClientConfig{
+			BaseURL: baseURL,
+		})
+	} else {
+		slog.Error("Please configure an access key or client ID and secret")
+		return
+	}
+
 	slog.Info("Starting server...", "port", serverPort)
-	client := pirsch.NewClient("", clientSecret, &pirsch.ClientConfig{
-		BaseURL: baseURL,
-	})
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// ignore the favicon
 		if r.URL.Path == "/favicon.ico" {
