@@ -12,8 +12,30 @@ async function main() {
             clientSecret: process.env.CLIENT_SECRET,
             
             // Only required for proxies and testing.
-            //baseUrl: "https://localhost.com:9999",
+            baseUrl: "https://localhost.com:9999",
         });
+
+        console.log("Sending page view.");
+        let resp = await client.hit({
+            url: "https://localhost.com/foo/bar",
+            ip: "87.188.103.138",
+            user_agent: "Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0",
+            accept_language: "de,en-US;q=0.7,en;q=0.3"
+        });
+        console.log(resp);
+        console.log("----------------------------");
+
+        console.log("Sending event.");
+        resp = await client.event("JS-SDK Event", {
+            url: "https://localhost.com/foo/bar",
+            ip: "87.188.103.138",
+            user_agent: "Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0",
+            accept_language: "de,en-US;q=0.7,en;q=0.3"
+        }, 42, {
+            "meta-data-key": "value"
+        });
+        console.log(resp);
+        console.log("----------------------------");
 
         console.log("Reading the domain.");
         const domain = await client.domain();
