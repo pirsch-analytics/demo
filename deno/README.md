@@ -1,5 +1,7 @@
 # Pirsch Analytics Deno Demo
 
+**This demo is outdated since Pirsch version 2.2. We now offer tag-based segmentation that is superior to the approach in this demo. Please refer to the [web demo](../web).**
+
 This demo shows how you can leverage Pirsch to do A/B testing from your backend. Everything shown here can also be achieved in the browser using JavaScript.
 
 A middleware is added to all sites (`routes/_middleware.ts`) to track page views and set up A/B testing. An event will be set *once*, containing the variants displayed to the user. To ensure they stay the same, a cookie will be used to preserve this information for up to 24 hours.
