@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
 
         <script defer src="<?php echo constant('SCRIPT') ?>"
-            id="pirschextendedjs"
+            id="<?php echo constant('SCRIPT_ID'); ?>"
             data-code="<?php echo constant('IDENTIFICATION_CODE'); ?>"
             <?php
             if (constant('DEV')) {
@@ -28,6 +28,7 @@
             <a href="/" class="menu">Home</a>
             <a href="page.php" class="menu">Second Page</a>
             <a href="/video.php" class="menu menu-active">Video Tracking</a>
+            <a href="/abtesting.php" class="menu">A/B Testing</a>
         </p>
         <p>
             Track whether a YouTube or Vimeo video was started, and completed, and how long it played. If you have multiple videos on a site, change the event name for each of them or add the title in the metadata.

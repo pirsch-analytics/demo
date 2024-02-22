@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
 
         <script defer src="<?php echo constant('SCRIPT') ?>"
-            id="pirschextendedjs"
+            id="<?php echo constant('SCRIPT_ID'); ?>"
             data-code="<?php echo constant('IDENTIFICATION_CODE'); ?>"
             <?php
             if (constant('DEV')) {
@@ -22,9 +22,10 @@
             <a href="/" class="menu">Home</a>
             <a href="/page.php" class="menu menu-active">Second Page</a>
             <a href="/video.php" class="menu">Video Tracking</a>
+            <a href="/abtesting.php" class="menu">A/B Testing</a>
         </p>
         <p>
-            This page exists to showcase page views. It uses the <strong>pirsch.js</strong> JavaScript snippet instead of the <strong>pirsch-ext.js</strong> snippet simply because it's more lightweight.
+            This page exists to showcase page views.
         </p>
     </body>
 </html>

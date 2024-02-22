@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
 
         <script defer src="<?php echo constant('SCRIPT') ?>"
-            id="pirschextendedjs"
+            id="<?php echo constant('SCRIPT_ID'); ?>"
             data-code="<?php echo constant('IDENTIFICATION_CODE'); ?>"
             data-tag-Author="John"
             data-tag="foo,Bar"
@@ -24,6 +24,7 @@
             <a href="/" class="menu menu-active">Home</a>
             <a href="/page.php" class="menu">Second Page</a>
             <a href="/video.php" class="menu">Video Tracking</a>
+            <a href="/abtesting.php" class="menu">A/B Testing</a>
         </p>
         <p>
             This demo shows how you can use Pirsch on your website. Appart from tracking page views, it also showcases more advanced features, including:

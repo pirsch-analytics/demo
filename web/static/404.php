@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
 
         <script defer src="<?php echo constant('SCRIPT') ?>"
-            id="pirschextendedjs"
+            id="<?php echo constant('SCRIPT_ID'); ?>"
             data-code="<?php echo constant('IDENTIFICATION_CODE'); ?>"
             <?php
             if (constant('DEV')) {
