@@ -45,9 +45,8 @@
                 }
 
                 // Set the headline.
-                const element = document.getElementById("headline-experiment");
-                element.innerText = headline;
-
+                document.getElementById("headline-experiment").innerText = headline;
+                
                 // Store the variant in localStorage.
                 localStorage.setItem("headline-experiment", variant);
 
