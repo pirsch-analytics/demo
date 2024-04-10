@@ -12,13 +12,11 @@ Next, go to your Pirsch dashboard integration settings page and add a new client
 const accessKey = "pa_x92lfoe...";
 ```
 
-Adjust the paths to your liking. These will later be used to integrate the snippet on your page and shouldn't contain any keywords blocked by ad blockers, like *tracker*, *event*, or *hit*. By default, they will look like this.
+Adjust the path to your liking. These will later be used to integrate the snippet on your page and shouldn't contain any keywords blocked by ad blockers, like *tracker*, *event*, or *hit*. By default, they will look like this.
 
 ```js
-const scriptPath = "/static/files/p.js";
-const eventScriptPath = "/static/files/ev.js";
-const extendedScriptPath = "/static/files/ext.js";
-const sessionScriptPath = "/static/files/ses.js";
+const scriptPath = "/static/files/pa.js";
+
 const pageViewPath = "/p/pv";
 const eventPath = "/p/e";
 const sessionPath = "/p/s";
@@ -34,12 +32,14 @@ const accessControlAllowOrigin = "your-domain.com";
 const accessControlAllowOrigin = "*";
 ```
 
-After making your adjustments, place the regular tracking snippet on your website. You can use any of the snippets available: `pirsch.js` for page views, `pirsch-events.js` for events, `pirsch-sessions.js` to keep sessions alive, or `pirsch-extended.js` to combine all of them including some additional features. Adjust the snippets to use your Cloudflare worker like this.
+After making your adjustments, place the snippet on your website and adjust the code to use your Cloudflare worker like this.
 
 ```html
-<script defer src="https://round-hill-c3a4.your-account.workers.dev/static/files/p.js"
-    id="pirschjs"
-    data-endpoint="https://round-hill-c3a4.your-account.workers.dev/p/pv"></script>
+<script defer src="https://round-hill-c3a4.your-account.workers.dev/static/files/pa.js"
+    id="pianjs"
+    data-hit-endpoint="https://round-hill-c3a4.your-account.workers.dev/p/pv"
+    data-event-endpoint="https://round-hill-c3a4.your-account.workers.dev/p/e"
+    data-session-endpoint="https://round-hill-c3a4.your-account.workers.dev/p/s"></script>
 ```
 
-`https://round-hill-c3a4.your-account.workers.dev` needs to be replaced with your own worker URL. If you made adjustments to the paths, you also need to change `/static/files/p.js` and `/p/pv`. This example uses the `pirsch.js` snippet. If you would like to use another script, you also need to adjust the `id` attribute to `pirscheventsjs`, `pirschsessionsjs`, or `pirschextendedjs`. The extended script uses the `data-hit-endpoint`, `data-event-endpoint`, and `data-session-endpoint` endpoint parameters.
+`https://round-hill-c3a4.your-account.workers.dev` needs to be replaced with your own worker URL.

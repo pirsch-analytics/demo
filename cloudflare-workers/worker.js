@@ -4,15 +4,12 @@
 const accessKey = "pa_...";
 
 /*
- * Adjust the paths to your likings.
- * The scripts will be available on your Worker URL. Here is an example for pirsch.js:
+ * Adjust the path to your liking.
+ * The script will be available on your Worker URL. Here is an example:
  * 
- * https://round-hill-c3a4.your-account.workers.dev/static/files/p.js
+ * https://round-hill-c3a4.your-account.workers.dev/static/files/pa.js
  */
-const scriptPath = "/static/files/p.js";
-const eventScriptPath = "/static/files/ev.js";
-const extendedScriptPath = "/static/files/ext.js";
-const sessionScriptPath = "/static/files/ses.js";
+const scriptPath = "/static/files/pa.js";
 
 /*
  * Adjust the endpoints to your likings.
@@ -32,22 +29,17 @@ const sessionPath = "/p/s";
 const accessControlAllowOrigin = "*";
 
 /*
- * To finish the setup, adjust the src, data-endpoint, data-hit-endpoint and data-event-endpoint attributes of your JavaScript snippet.
- * Here is an example for pirsch.js:
+ * To finish the setup, adjust the src, data-hit-endpoint, and data-event-endpoint attributes of your JavaScript snippet.
+ * Here is an example:
  * 
-   <script defer src="https://round-hill-c3a4.your-account.workers.dev/path/script.js"
-        id="pirschjs"
-        data-endpoint="https://round-hill-c3a4.your-account.workers.dev/path/pv"></script>
+   <script defer src="https://round-hill-c3a4.your-account.workers.dev/path/pa.js"
+        id="pianjs"
+        data-hit-endpoint="https://round-hill-c3a4.your-account.workers.dev/path/pv"
+        data-event-endpoint="https://round-hill-c3a4.your-account.workers.dev/path/e"></script>
  *
  * The URL must be adjusted to match your Worker URL.
- * For pirsch-extended.js, overwrite the endpoints using data-hit-endpoint and data-event-endpoint instead of data-endpoint.
  * The data-code attribute can be removed.
- * The id attribute must match the script type:
- * 
- * - pirschjs for pirsch.js
- * - pirscheventsjs for pirsch-events.js
- * - pirschextendedjs for pirsch-extended.js
- * - pirschsessionsjs for pirsch-sessions.js
+ * The id attribute must match "pianjs".
  */
 
 /*
@@ -56,10 +48,7 @@ const accessControlAllowOrigin = "*";
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 
-const pirschScriptURL = "https://api.pirsch.io/pirsch.js";
-const pirschEventScriptURL = "https://api.pirsch.io/pirsch-events.js";
-const pirschExtendedScriptURL = "https://api.pirsch.io/pirsch-extended.js";
-const pirschSessionScriptURL = "https://api.pirsch.io/pirsch-sessions.js";
+const pirschScriptURL = "https://api.pirsch.io/pa.js";
 const pirschPageViewEndpoint = "https://api.pirsch.io/api/v1/hit";
 const pirschEventEndpoint = "https://api.pirsch.io/api/v1/event";
 const pirschSessionEndpoint = "https://api.pirsch.io/api/v1/session";
@@ -76,12 +65,6 @@ async function handleRequest(request) {
 
     if (path === scriptPath) {
         result = await getScript(request, pirschScriptURL);
-    } else if (path === eventScriptPath) {
-        result = await getScript(request, pirschEventScriptURL);
-    } else if (path === extendedScriptPath) {
-        result = await getScript(request, pirschExtendedScriptURL);
-    } else if (path === sessionScriptPath) {
-        result = await getScript(request, pirschSessionScriptURL);
     } else if (path === pageViewPath) {
         result = await handlePageView(request);
     } else if (path === eventPath) {
