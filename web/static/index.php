@@ -52,7 +52,7 @@
             </button>
         </p>
         <p>
-            <button pirsch-event="HTML Button Clicked" pirsch-meta-key="meta value" pirsch-duration="2">
+            <button data-pirsch-event="HTML Button Clicked" data-pirsch-meta-key="meta value" data-pirsch-duration="2">
                 Trigger Custom Event (HTML)
             </button>
         </p>
@@ -90,10 +90,10 @@
             <a href="https://docs.pirsch.io">Visit docs.pirsch.io</a>
         </p>
         <p>
-            The outbound links below will be ignored, since they have the pirsch-ignore attriube or CSS class set.
+            The outbound links below will be ignored, since they have the data-pirsch-ignore attribute or CSS class set.
         </p>
         <p>
-            <a href="https://pirsch.io" target="_blank" pirsch-ignore>Visit pirsch.io</a><br />
+            <a href="https://pirsch.io" target="_blank" data-pirsch-ignore>Visit pirsch.io</a><br />
             <a href="https://pirsch.io" target="_blank" class="pirsch-ignore">Visit pirsch.io</a>
         </p>
         <p>
@@ -107,7 +107,7 @@
             External links with additional event tracking will trigger two events.
         </p>
         <p>
-            <a href="https://docs.pirsch.io" pirsch-event="Two events on one click">Visit docs.pirsch.io</a>
+            <a href="https://docs.pirsch.io" data-pirsch-event="Two events on one click">Visit docs.pirsch.io</a>
         </p>
 
         <!-- Track file downloads. -->

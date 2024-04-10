@@ -18,7 +18,7 @@
             This page shows one way to implement client-side A/B testing. The headline below is randomly selected from two options. When the button is clicked, an event is fired that can later be combined with the tags on the page to determine which headline was more effective. The randomly selected option is kept in localStorage to prevent it from changing after the first page visit. The script snippet is constructed on site using JavaScript.
         </p>
         <h2 id="headline-experiment">Pre-filled default headline</h2>
-        <button pirsch-event="Order Course">Order Now!</button>
+        <button data-pirsch-event="Order Course">Order Now!</button>
         <p>
             Click the button below to reset the A/B test and select the headline randomly again.
         </p>
