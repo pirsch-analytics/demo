@@ -1,2 +1,4 @@
 .idea/
 web/static/config.php
+web-redirect/booking/config.php
+web-redirect/hotel/config.php
