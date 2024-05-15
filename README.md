@@ -9,6 +9,7 @@ This is the official demo repository for [Pirsch Analytics](https://pirsch.io). 
 * [Go SDK](/go-sdk)
 * [Proxying the scripts through Cloudflare Workers](/cloudflare-workers)
 * [Creating roll-up views](/rollup)
+* [Roll-up view that keeps the original referrer/source](/web-redirect)
 
 ## License
 
