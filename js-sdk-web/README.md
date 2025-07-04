@@ -4,7 +4,7 @@ This demo shows how you can use the Pirsch JavaScript/TypeScript SDK in the brow
 
 ## Configuration
 
-Adjust the `identificationCode` in `main.ts`. You will also need a dashboard on Pirsch with `localhost.com` as the domain and be able to access the demo locally on `localhost.com:8081` (for example by adding it to `/etc/hosts`).
+Adjust the `identificationCode` in `main.ts`. You will also need a dashboard on Pirsch with `localhost.com` as the domain and be able to access the demo locally on `localhost.com:8079` (for example by adding it to `/etc/hosts`).
 
 ## Usage
 

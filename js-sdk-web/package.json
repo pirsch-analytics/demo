@@ -16,10 +16,10 @@
   "author": "Emvi Software GmbH",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^5.3.3",
-    "vite": "^5.0.11"
+    "typescript": "^5.8.3",
+    "vite": "^7.0.2"
   },
   "dependencies": {
-    "pirsch-sdk": "^2.5.0"
+    "pirsch-sdk": "^2.9.1"
   }
 }

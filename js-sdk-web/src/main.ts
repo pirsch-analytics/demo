@@ -7,7 +7,7 @@ async function main() {
             identificationCode: "",
 
             // Only required for proxies and testing.
-            //baseUrl: "https://localhost.com:9999",
+            baseUrl: "https://localhost.com:9999",
         });
 
         // Send a page view.
@@ -17,6 +17,8 @@ async function main() {
         await client.event("Custom Event", 0, {
             meta_data: "field"
         });
+
+        console.log("Page view and event sent successfully.");
     } catch (error) {
         console.error(error);
     }
