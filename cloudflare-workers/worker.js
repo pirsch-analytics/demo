@@ -1,7 +1,15 @@
 /*
- * Create an access key on the integration settings page of your dashboard and enter it here.
+ * Create an access key on the integration settings page for each of your dashboards and enter the hostname (in lowercase!) + access key here.
+ * Additionally, you can configure one or more other dashboards to send the data to (rollup views).
  */
-const accessKey = "pa_...";
+const dashboards = {
+    "hostname.com": {
+        accessKey: "pa_...",
+        rollup: [
+            "pa_..."
+        ]
+    }
+};
 
 /*
  * Adjust the path to your liking.
@@ -97,12 +105,22 @@ async function getScript(request, script) {
 }
 
 async function handlePageView(request) {
+    const body = JSON.stringify(getBody(request));
     const response = await fetch(pirschPageViewEndpoint, {
         method: "POST",
         headers: {
-            "Authorization": `Bearer ${accessKey}`
+            "Authorization": `Bearer ${getAccessKey(request)}`
         },
-        body: JSON.stringify(getBody(request))
+        body
+    });
+    getRollupViews(request).forEach(async accessKey => {
+        await fetch(pirschPageViewEndpoint, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${accessKey}`
+            },
+            body
+        });
     });
     return new Response(response.body, {
         status: response.status
@@ -110,12 +128,22 @@ async function handlePageView(request) {
 }
 
 async function handleEvent(request) {
+    const body = JSON.stringify(await getData(request));
     const response = await fetch(pirschEventEndpoint, {
         method: "POST",
         headers: {
-            "Authorization": `Bearer ${accessKey}`
+            "Authorization": `Bearer ${getAccessKey(request)}`
         },
-        body: JSON.stringify(await getData(request))
+        body
+    });
+    getRollupViews(request).forEach(async accessKey => {
+        await fetch(pirschEventEndpoint, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${accessKey}`
+            },
+            body
+        });
     });
     return new Response(response.body, {
         status: response.status
@@ -123,25 +151,47 @@ async function handleEvent(request) {
 }
 
 async function handleSession(request) {
+    const body = JSON.stringify({
+        ip: request.headers.get("CF-Connecting-IP"),
+        user_agent: request.headers.get("User-Agent"),
+        sec_ch_ua: request.headers.get("Sec-CH-UA"),
+        sec_ch_ua_mobile: request.headers.get("Sec-CH-UA-Mobile"),
+        sec_ch_ua_platform: request.headers.get("Sec-CH-UA-Platform"),
+        sec_ch_ua_platform_version: request.headers.get("Sec-CH-UA-Platform-Version"),
+        sec_ch_width: request.headers.get("Sec-CH-Width"),
+        sec_ch_viewport_width: request.headers.get("Sec-CH-Viewport-Width")
+    });
     const response = await fetch(pirschSessionEndpoint, {
-      method: "POST",
-      headers: {
-          "Authorization": `Bearer ${accessKey}`
-      },
-      body: JSON.stringify({
-          ip: request.headers.get("CF-Connecting-IP"),
-          user_agent: request.headers.get("User-Agent"),
-          sec_ch_ua: request.headers.get("Sec-CH-UA"),
-          sec_ch_ua_mobile: request.headers.get("Sec-CH-UA-Mobile"),
-          sec_ch_ua_platform: request.headers.get("Sec-CH-UA-Platform"),
-          sec_ch_ua_platform_version: request.headers.get("Sec-CH-UA-Platform-Version"),
-          sec_ch_width: request.headers.get("Sec-CH-Width"),
-          sec_ch_viewport_width: request.headers.get("Sec-CH-Viewport-Width")
-      })
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${getAccessKey(request)}`
+        },
+        body
+    });
+    getRollupViews(request).forEach(async accessKey => {
+        await fetch(pirschSessionEndpoint, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${accessKey}`
+            },
+            body
+        });
     });
     return new Response(response.body, {
         status: response.status
     });
+}
+
+function getAccessKey(request) {
+    return dashboards[getHostname(request)]?.accessKey ?? "";
+}
+
+function getRollupViews(request) {
+    return dashboards[getHostname(request)]?.rollup ?? [];
+}
+
+function getHostname(request) {
+    return new URL(request.url).hostname.toLowerCase().trim().replace(/^www\./, "");
 }
 
 function getBody(request) {

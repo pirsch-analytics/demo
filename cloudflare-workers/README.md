@@ -6,10 +6,32 @@ This demo shows how you can use [Cloudflare Workers](https://workers.cloudflare.
 
 Create a free account at [Cloudflare](https://cloudflare.com/) and create a new worker. Copy the code from `worker.js` and paste it into the code section.
 
-Next, go to your Pirsch dashboard integration settings page and add a new client with the **Access Key** type. Create the client and copy the access key. Paste into the `accessKey` constant right at the top of the worker script.
+Next, go to your Pirsch dashboard integration settings page and add a new client with the **Access Key** type. Create the client and copy the access key. Paste into the `accessKey` constant right at the top of the worker script. You can set up the worker to support multiple websites/dashboards.
 
 ```js
-const accessKey = "pa_x92lfoe...";
+const dashboards = {
+    "example.com": {
+        accessKey: "pa_x92lfoe..."
+    }
+};
+```
+
+To create rollup views, add the `rollup` configuration for each dashboard. Page views and events will be sent to these in addition to the main configured dashboard.
+
+```js
+const dashboards = {
+    "example.com": {
+        accessKey: "pa_x92lfoe..."
+    },
+    "second-with-rollup.com": {
+        accessKey: "pa_a53lvpw...",
+        rollup: [
+            "pa_rollup1...", // access key of the rollup view dashboard
+            "pa_rollup2...", // supports multiple rollup dashboards
+            // ...
+        ]
+    }
+};
 ```
 
 Adjust the path to your liking. These will later be used to integrate the snippet on your page and shouldn't contain any keywords blocked by ad blockers, like *tracker*, *event*, or *hit*. By default, they will look like this.
