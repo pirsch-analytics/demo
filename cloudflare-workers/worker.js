@@ -191,7 +191,8 @@ function getRollupViews(request) {
 }
 
 function getHostname(request) {
-    return new URL(request.url).hostname.toLowerCase().trim().replace(/^www\./, "");
+    const url = new URL(request.url);
+    return new URL(url.searchParams.get("url")).hostname.toLowerCase().trim().replace(/^www\./, "");
 }
 
 function getBody(request) {
