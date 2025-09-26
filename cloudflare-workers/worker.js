@@ -183,11 +183,21 @@ async function handleSession(request) {
 }
 
 function getAccessKey(request) {
-    return dashboards[getHostname(request)]?.accessKey ?? "";
+    return getDashboardConfig(getHostname(request))?.accessKey ?? "";
 }
 
 function getRollupViews(request) {
-    return dashboards[getHostname(request)]?.rollup ?? [];
+    return getDashboardConfig(getHostname(request))?.rollup ?? [];
+}
+
+function getDashboardConfig(hostname) {
+    for (const d in dashboards) {
+        if (d.replace(/^www\./, "") === hostname) {
+            return dashboards[d];
+        }
+    }
+
+    return null;
 }
 
 function getHostname(request) {
