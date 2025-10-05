@@ -1,13 +1,17 @@
 /*
  * Create an access key on the integration settings page for each of your dashboards and enter the hostname (in lowercase!) + access key here.
- * Additionally, you can configure one or more other dashboards to send the data to (rollup views).
+ * Additionally, you can configure one or more other dashboards to send the data to (rollup-views), a path prefix, and a path suffix.
  */
 const dashboards = {
     "hostname.com": {
         accessKey: "pa_...",
         rollup: [
             "pa_..."
-        ]
+        ],
+        options: {
+            prefix: "/prefix/",
+            suffix: "/suffix"
+        }
     }
 };
 
@@ -105,14 +109,14 @@ async function getScript(request, script) {
 }
 
 async function handlePageView(request) {
-    const body = JSON.stringify(getBody(request));
     const response = await fetch(pirschPageViewEndpoint, {
         method: "POST",
         headers: {
             "Authorization": `Bearer ${getAccessKey(request)}`
         },
-        body
+        body: JSON.stringify(getBody(request))
     });
+    const body = JSON.stringify(getBody(request, getOptions(request)));
     getRollupViews(request).forEach(async accessKey => {
         await fetch(pirschPageViewEndpoint, {
             method: "POST",
@@ -128,15 +132,18 @@ async function handlePageView(request) {
 }
 
 async function handleEvent(request) {
-    const body = JSON.stringify(await getData(request));
+    const data = await getData(request);
     const response = await fetch(pirschEventEndpoint, {
         method: "POST",
         headers: {
-            "Authorization": `Bearer ${getAccessKey(request)}`
+            "Authorization": `Bearer ${getAccessKey(data, true)}`
         },
-        body
+        body: JSON.stringify(data)
     });
-    getRollupViews(request).forEach(async accessKey => {
+    const {prefix, suffix} = getOptions(data, true);
+    data.url = rewritePath(data.url, prefix, suffix);
+    const body = JSON.stringify(data);
+    getRollupViews(data, true).forEach(async accessKey => {
         await fetch(pirschEventEndpoint, {
             method: "POST",
             headers: {
@@ -182,12 +189,12 @@ async function handleSession(request) {
     });
 }
 
-function getAccessKey(request) {
-    return getDashboardConfig(getHostname(request))?.accessKey ?? "";
+function getAccessKey(request, fromBody = false) {
+    return getDashboardConfig(getHostname(request, fromBody))?.accessKey ?? "";
 }
 
-function getRollupViews(request) {
-    return getDashboardConfig(getHostname(request))?.rollup ?? [];
+function getRollupViews(request, fromBody = false) {
+    return getDashboardConfig(getHostname(request, fromBody))?.rollup ?? [];
 }
 
 function getDashboardConfig(hostname) {
@@ -200,15 +207,23 @@ function getDashboardConfig(hostname) {
     return null;
 }
 
-function getHostname(request) {
+function getHostname(request, fromBody = false) {
+    if (fromBody) {
+        return new URL(request.url).hostname.toLowerCase().trim().replace(/^www\./, "");
+    }
+
     const url = new URL(request.url);
     return new URL(url.searchParams.get("url")).hostname.toLowerCase().trim().replace(/^www\./, "");
 }
 
-function getBody(request) {
+function getBody(request, options = {}) {
+    const {
+        prefix,
+        suffix
+    } = options;
     const url = new URL(request.url);
     return {
-        url: url.searchParams.get("url"),
+        url: rewritePath(url.searchParams.get("url"), prefix, suffix),
         code: url.searchParams.get("code"),
         ip: request.headers.get("CF-Connecting-IP"),
         user_agent: request.headers.get("User-Agent"),
@@ -226,8 +241,13 @@ function getBody(request) {
     };
 }
 
-async function getData(request) {
+async function getData(request, options = {}) {
+    const {
+        prefix,
+        suffix
+    } = options;
     const data = await request.json();
+    data.url = rewritePath(data.url, prefix, suffix);
     data.ip = request.headers.get("CF-Connecting-IP");
     data.user_agent = request.headers.get("User-Agent");
     data.accept_language = request.headers.get("Accept-Language");
@@ -238,4 +258,22 @@ async function getData(request) {
     data.sec_ch_width = request.headers.get("Sec-CH-Width");
     data.sec_ch_viewport_width = request.headers.get("Sec-CH-Viewport-Width");
     return data;
+}
+
+function getOptions(request, fromBody = false) {
+    return getDashboardConfig(getHostname(request, fromBody))?.options ?? {};
+}
+
+function rewritePath(url, prefix, suffix) {
+    if (!prefix) {
+        prefix = "";
+    }
+
+    if (!suffix) {
+        suffix = "";
+    }
+
+    const u = new URL(url);
+    u.pathname = prefix+u.pathname+suffix;
+    return u.toString();
 }

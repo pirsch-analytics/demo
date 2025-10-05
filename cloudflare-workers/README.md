@@ -16,7 +16,7 @@ const dashboards = {
 };
 ```
 
-To create rollup views, add the `rollup` configuration for each dashboard. Page views and events will be sent to these in addition to the main configured dashboard.
+To create rollup views, add the `rollup` configuration for each dashboard. Page views and events will be sent to these in addition to the main configured dashboard. The path `prefix` and `suffix` are optional and will only be applied to rollup-views.
 
 ```js
 const dashboards = {
@@ -29,7 +29,11 @@ const dashboards = {
             "pa_rollup1...", // access key of the rollup view dashboard
             "pa_rollup2...", // supports multiple rollup dashboards
             // ...
-        ]
+        ],
+        options: {
+            prefix: "/prefix/", // optional prefix for rollup-views
+            suffix: "/suffix" // optional suffix for rollup-views
+        }
     }
 };
 ```
