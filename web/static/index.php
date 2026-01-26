@@ -29,10 +29,12 @@
         <p>
             This demo shows how you can use Pirsch on your website. Appart from tracking page views, it also showcases more advanced features, including:
             <ul>
-                <li>custom events</li>
-                <li>outbound link tracking</li>
-                <li>tracking file downloads</li>
-                <li>tracking 404 pages</li>
+                <li>Custom events</li>
+                <li>Outbound link tracking</li>
+                <li>Tracking file downloads</li>
+                <li>Tracking 404 pages</li>
+                <li>Events to track the scroll depth</li>
+                <li>Tracking video playback time</li>
             </ul>
         </p>
         
@@ -204,38 +206,13 @@
         </script>
 
         <!--
-            Track the scroll depth. You can configure how many events are being tracked by modifiying the "steps" variable.
-            100% scroll / steps = number of events.
+            Track the scroll depth. data-event-name will set the event name. data-steps will add rounding (from 1 to 100).
+            Any other data-... attributes will be tracked as they are.
         -->
-        <script>
-            const steps = 5;
-
-            document.addEventListener("DOMContentLoaded", () => {
-                let depth = 0;
-                let step = 0;
-
-                window.addEventListener("scroll", () => {
-                    const currentDepth = getScrollPercent();
-
-                    if (currentDepth > depth) {
-                        depth = currentDepth;
-                        const currentStep = Math.round(depth/(100/steps));
-
-                        if (currentStep > step) {
-                            step = currentStep;
-                            pirsch("Scroll Depth", {meta: {depth: step*(100/steps)+"%"}});
-                        }
-                    }
-                });
-            });
-
-            function getScrollPercent() {
-                const h = document.documentElement, 
-                    b = document.body,
-                    st = 'scrollTop',
-                    sh = 'scrollHeight';
-                return Math.floor((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100);
-            }
-        </script>
+        <script src="pirsch-scroll-depth.js"
+            id="pascrode"
+            data-steps="10"
+            data-words="500"
+            data-title="Home"></script>
     </body>
 </html>
