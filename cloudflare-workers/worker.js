@@ -1,17 +1,17 @@
 /*
  * Create an access key on the integration settings page for each of your dashboards and enter the hostname (in lowercase!) + access key here.
- * Additionally, you can configure one or more other dashboards to send the data to (rollup-views), a path prefix, and a path suffix.
+ * You can configure one or more additional dashboards to send the data to (rollup-views), a path prefix, and a path suffix (uncomment to use these options).
  */
 const dashboards = {
     "hostname.com": {
         accessKey: "pa_...",
-        rollup: [
+        /*rollup: [
             "pa_..."
         ],
         options: {
             prefix: "/prefix/",
             suffix: "/suffix"
-        }
+        }*/
     }
 };
 
