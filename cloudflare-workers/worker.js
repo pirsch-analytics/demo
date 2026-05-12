@@ -41,6 +41,14 @@ const sessionPath = "/p/s";
 const accessControlAllowOrigin = "*";
 
 /*
+ * Optional robots.txt file content. If not empty, it'll be available on /robots.txt.
+ * The default robots.txt will disallow crawlers from indexing any proxied content.
+ */
+const robotsTxt = `User-agent: *
+Disallow: /
+`;
+
+/*
  * To finish the setup, adjust the src, data-hit-endpoint, and data-event-endpoint attributes of your JavaScript snippet.
  * Here is an example:
  * 
@@ -83,6 +91,11 @@ async function handleRequest(request) {
         result = await handleEvent(request);
     } else if (path === sessionPath) {
         result = await handleSession(request);
+    } else if (path === "/robots.txt" && robotsTxt !== "") {
+        result = new Response(robotsTxt, {
+            status: 200,
+            contentType: "text/plain"
+        });
     } else {
         result = new Response(null, {
             status: 404
