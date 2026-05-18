@@ -5,6 +5,13 @@
     <head>
         <title>Pirsch Web Demo</title>
         <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta name="pirsch-event"
+            data-pirsch-selector=".pirsch-meta"
+            data-pirsch-event="Meta Event"
+            data-pirsch-trigger="click"
+            data-pirsch-meta-key="value"
+            data-pirsch-meta-foo="bar"
+            data-pirsch-non-interactive />
 
         <script defer src="<?php echo constant('SCRIPT') ?>"
             id="<?php echo constant('SCRIPT_ID'); ?>"
@@ -37,7 +44,7 @@
                 <li>Tracking video playback time</li>
             </ul>
         </p>
-        
+
         <!-- Custom event tracking using JavaScript, HTML attributes, and CSS classes. -->
         <h2>Custom Events</h2>
         <p>
@@ -81,6 +88,17 @@
                 });
             });
         </script>
+
+        <!-- Custom event tracking using meta tags. -->
+        <h2>Custom Events Using Meta Tags</h2>
+        <p>
+            Click the button below to trigger a custom events. The event is added via a meta tag.
+        </p>
+        <p>
+            <button class="pirsch-meta">
+                Trigger Custom Event (Meta Tag)
+            </button>
+        </p>
 
         <!-- Track outbound links. -->
         <h2>Outbound Link Tracking</h2>
@@ -183,7 +201,7 @@
                         e.preventDefault();
                         preventSubmission = false;
                     }
-                    
+
                     // Get the message and send the event.
                     const input = document.getElementById("message");
 

@@ -3,6 +3,7 @@
 This demo shows how you can use Pirsch on your website using JavaScript. Appart from tracking page views, it also showcases more advanced features, including:
 
 * Custom events
+* Event tracking using meta tags
 * Outbound link tracking
 * Tracking file downloads
 * Tracking 404 pages
