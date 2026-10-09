@@ -50,9 +50,9 @@
         <p>
             Click the buttons below to trigger custom events. There are three methods available to add events to your page:
             <ul>
-                <li>using JavaScript, manually triggering an event on an action</li>
-                <li>adding a HTML attribute to certain elements, triggering events on click</li>
-                <li>adding a CSS class name to certain elements, triggering events on click</li>
+                <li>Using JavaScript, manually triggering an event on an action with nested metadata</li>
+                <li>Adding a HTML attribute to certain elements, triggering events on click</li>
+                <li>Adding a CSS class name to certain elements, triggering events on click</li>
             </ul>
         </p>
         <p>
@@ -79,7 +79,22 @@
                     pirsch("JS Button Clicked", {
                         duration: 1,
                         meta: {
-                            key: "meta value"
+                            key: "meta value",
+                            answer: 42,
+                            nested: [
+                                {
+                                    no: 1,
+                                    label: "One"
+                                },
+                                {
+                                    no: 2,
+                                    label: "Two"
+                                },
+                                {
+                                    no: 3,
+                                    label: "Three"
+                                }
+                            ]
                         }
                     });
 
