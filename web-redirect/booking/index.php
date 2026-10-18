@@ -37,6 +37,6 @@ $utmTerm = $_GET['utm_term'];
         <input type="text" name="name" id="name" />
         <br />
         <!-- Attach referrer/source data to URL to keep the session between the hotel and the booking sites. -->
-        <a href="http://hotel.localhost.com:8081?ref=<?php echo $referrer; ?>&utm_source=<?php echo $utmSource; ?>&utm_medium=<?php echo $utmMedium; ?>&utm_campaign=<?php echo $utmCampaign; ?>&utm_content=<?php echo $utmContent; ?>&utm_term=<?php echo $utmTerm; ?>" class="button">Confirm</a>
+        <a href="http://hotel.localhost.com:8088?ref=<?php echo $referrer; ?>&utm_source=<?php echo $utmSource; ?>&utm_medium=<?php echo $utmMedium; ?>&utm_campaign=<?php echo $utmCampaign; ?>&utm_content=<?php echo $utmContent; ?>&utm_term=<?php echo $utmTerm; ?>" class="button">Confirm</a>
     </body>
 </html>

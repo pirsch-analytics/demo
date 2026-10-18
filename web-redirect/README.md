@@ -16,12 +16,12 @@ Use any PHP server you like to serve the `hotel` and `booking` directory. Here i
 
 ```php
 cd demo/web-redirect/hotel
-php -S hotel.localhost.com:8081
+php -S hotel.localhost.com:8088
 ```
 
 ```php
 cd demo/web-redirect/booking
-php -S booking.localhost.com:8082
+php -S booking.localhost.com:8089
 ```
 
-Open `hotel.localhost.com:8081` in your browser.
+Open `hotel.localhost.com:8088` in your browser.

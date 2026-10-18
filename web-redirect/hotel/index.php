@@ -78,6 +78,6 @@ function setPirschCookie() {
             Your UTM parameters are: <?php echo $utmSource.' '.$utmMedium.' '.$utmCampaign.' '.$utmContent.' '.$utmTerm; ?>
         </p>
         <!-- Attach referrer/source data to URL to keep the session between the hotel and the booking sites. -->
-        <a href="http://booking.localhost.com:8082?ref=<?php echo $referrer; ?>&utm_source=<?php echo $utmSource; ?>&utm_medium=<?php echo $utmMedium; ?>&utm_campaign=<?php echo $utmCampaign; ?>&utm_content=<?php echo $utmContent; ?>&utm_term=<?php echo $utmTerm; ?>" class="button">Book Now</a>
+        <a href="http://booking.localhost.com:8089?ref=<?php echo $referrer; ?>&utm_source=<?php echo $utmSource; ?>&utm_medium=<?php echo $utmMedium; ?>&utm_campaign=<?php echo $utmCampaign; ?>&utm_content=<?php echo $utmContent; ?>&utm_term=<?php echo $utmTerm; ?>" class="button">Book Now</a>
     </body>
 </html>
