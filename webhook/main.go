@@ -7,10 +7,11 @@ import (
 )
 
 func main() {
+    log.Println("Starting webhook server...")
 	mux := http.NewServeMux()
-	mux.HandleFunc("/webhook", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/webhook", func(_ http.ResponseWriter, r *http.Request) {
 		body, _ := io.ReadAll(r.Body)
 		log.Println(string(body))
 	})
-	http.ListenAndServe("localhost:9876", mux)
+	http.ListenAndServe("localhost.com:9876", mux)
 }
