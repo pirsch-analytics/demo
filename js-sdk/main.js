@@ -10,7 +10,7 @@ async function main() {
             hostname: process.env.HOSTNAME,
             clientId: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            
+
             // Only required for proxies and testing.
             baseUrl: "https://localhost.com:9999",
         });
@@ -65,8 +65,8 @@ async function main() {
             id: domain.id,
             from: new Date(),
             to: new Date(),
-            event: "Registration",
-            event_meta_key: "affiliate"
+            event: "JS-SDK Event",
+            event_meta_key: "meta-data-key"
         });
         console.log(eventMetadataStats);
         console.log("----------------------------");
@@ -85,7 +85,7 @@ async function main() {
             id: domain.id,
             from: new Date(),
             to: new Date(),
-            event: "Registration"
+            event: "JS-SDK Event"
         });
         console.log(eventPageStats);
     } catch (error) {

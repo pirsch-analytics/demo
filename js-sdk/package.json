@@ -20,7 +20,7 @@
   "author": "Emvi Software GmbH",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^17.0.1",
-    "pirsch-sdk": "^2.9.1"
+    "dotenv": "^18.0.9",
+    "pirsch-sdk": "^2.10.1"
   }
 }
