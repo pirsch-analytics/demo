@@ -4,7 +4,7 @@ async function main() {
     try {
         // Create the client using the identification code.
         const client = new Pirsch({
-            identificationCode: "",
+            identificationCode: "WdZ1uoOL7bRd6gH9VpxzXvUfcqq9bzQt",
 
             // Only required for proxies and testing.
             baseUrl: "https://localhost.com:9999",
