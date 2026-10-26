@@ -6,7 +6,8 @@ This demo shows how you can embed the Pirsch dashboard using an iframe.
 
 Use any server you like to serve the directory. Here is an example using the command line and PHP.
 
-```php
+```
+export PIRSCH_ACCESS_CODE=<access_code>
 php -S localhost:8080
 ```
 
