@@ -4,24 +4,17 @@ import (
 	"fmt"
 	"log/slog"
 	"net/http"
+	"os"
 
 	pirsch "github.com/pirsch-analytics/pirsch-go-sdk/v2/pkg"
 )
 
-const (
-	// The base URL. Usually https://pirsch.io.
-	baseURL = "https://localhost.com:9999"
-
-	// Your client access key OR client ID and secret for oAuth.
-	clientAccessKey = ""
-	clientID        = ""
-	clientSecret    = ""
-
-	// The server port, in case you need to change it.
-	serverPort = 8900
-)
-
 func main() {
+    serverPort := os.Getenv("PIRSCH_SERVER_PORT")
+	baseURL:=os.Getenv("PIRSCH_BASE_URL")
+	clientAccessKey := os.Getenv("PIRSCH_ACCESS_KEY")
+	clientID := os.Getenv("PIRSCH_CLIENT_ID")
+	clientSecret := os.Getenv("PIRSCH_CLIENT_SECRET")
 	var client *pirsch.Client
 
 	if clientAccessKey != "" {
@@ -55,5 +48,5 @@ func main() {
 		w.Header().Set("Accept-CH", "Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version, Sec-CH-Width, Sec-CH-Viewport-Width")
 		_, _ = w.Write([]byte("<h1>Hello World!</h1>"))
 	})
-	slog.Error("Error starting server", "err", http.ListenAndServe(fmt.Sprintf(":%d", serverPort), nil))
+	slog.Error("Error starting server", "err", http.ListenAndServe(fmt.Sprintf(":%s", serverPort), nil))
 }

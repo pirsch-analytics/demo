@@ -1,8 +1,9 @@
 package pkg
 
 import (
-	"github.com/emvi/null"
 	"time"
+
+	"github.com/emvi/null"
 )
 
 const (
@@ -93,6 +94,7 @@ type Filter struct {
 	UTMCampaign          []string          `json:"utm_campaign,omitempty"`
 	UTMContent           []string          `json:"utm_content,omitempty"`
 	UTMTerm              []string          `json:"utm_term,omitempty"`
+	Channel              []string          `json:"channel,omitempty"`
 	Tag                  []string          `json:"tag"`
 	Tags                 map[string]string `json:"-"`
 	CustomMetricKey      string            `json:"custom_metric_key,omitempty"`
@@ -407,6 +409,18 @@ type ReferrerStats struct {
 	Visitors         int     `json:"visitors"`
 	Sessions         int     `json:"sessions"`
 	RelativeVisitors float64 `json:"relative_visitors"`
+	Bounces          int     `json:"bounces"`
+	BounceRate       float64 `json:"bounce_rate"`
+}
+
+// ChannelStats is the result type for channel statistics.
+type ChannelStats struct {
+	Channel          string  `json:"channel"`
+	Visitors         int     `json:"visitors"`
+	Views            int     `json:"views"`
+	Sessions         int     `json:"sessions"`
+	RelativeVisitors float64 `json:"relative_visitors"`
+	RelativeViews    float64 `json:"relative_views"`
 	Bounces          int     `json:"bounces"`
 	BounceRate       float64 `json:"bounce_rate"`
 }
